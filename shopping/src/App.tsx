@@ -1,14 +1,15 @@
 import React from "react";
-import "./App.css";
-import Header from "./components/GeneralUI/Header";
-import Footer from "./components/GeneralUI/Footer";
+import './styles/main.scss';
+import Header from "./components/generalUI/header/Header";
+import Footer from "./components/generalUI/footer/Footer";
+
 import { Button } from "@material-ui/core";
 
 const App = () => {
   return (
     <>
       <Header/>
-      <Button variant="contained" color="default">Hello world</Button>    
+      <Button className="button" variant="contained" color="default">Hello world</Button>    
       <Footer/>  
     </>
     );
