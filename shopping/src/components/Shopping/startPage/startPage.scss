@@ -1,0 +1,48 @@
+@import "../../../styles/variables";
+
+.startPage-imageWrapper{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 40vh;
+    margin-bottom: 10px;
+}
+
+.startPage-imageWrapper::before{
+    position:absolute;
+    top: 0;
+    left: 0;
+    content:"";
+    display:block;
+    background-color:rgba(0,0,0,0.2);
+    width:100%;
+    height:100%;
+}
+
+.startPage h2{
+    z-index: 2;
+    margin-top: 90px;
+    margin-bottom: 20px;
+    font-size: 2.25rem;
+    letter-spacing: 2px;
+    font-weight: bolder;
+    color: #fff;
+}
+
+.startPage-imageMan{
+    background-image: url("../../../assets/ana-maria-nichita-hp7Uj0EO__g-unsplash.jpg");
+}
+
+.startPage-imageWoman{
+    background-image: url("../../../assets/nikhil-uttam-cEPOwfSYm4Q-unsplash.jpg");
+}
+
+.startPage-imageKids{
+    background-image: url("../../../assets/annie-spratt-ja_hJ4uG-JU-unsplash.jpg");
+}
+
+

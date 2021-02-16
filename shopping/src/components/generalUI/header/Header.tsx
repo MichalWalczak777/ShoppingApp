@@ -41,7 +41,7 @@ const Header = () => {
             </Toolbar>)
     }
     return (
-        <header>
+        <header className="header-appHeader">
             <AppBar>{navigationMenu()}</AppBar>
         </header>
     );
