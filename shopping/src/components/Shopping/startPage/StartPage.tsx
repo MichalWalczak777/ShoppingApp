@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, makeStyles } from "@material-ui/core";
+import {Link} from "react-router-dom";
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const StartPage = () => {
@@ -20,14 +21,16 @@ const StartPage = () => {
         <div className="startPage">
             <div className="startPage-imageWrapper startPage-imageWoman">
                 <h2>KOBIETA</h2>
-                <Button className={button} color="primary" variant="outlined">Zobacz więcej<ArrowForwardIcon/></Button>
+                <Button className={button} color="primary" variant="outlined" component={Link} to="/home">Zobacz więcej<ArrowForwardIcon/></Button>
             </div>
             <div className="startPage-imageWrapper startPage-imageMan">
                 <h2>MĘŻCZYZNA</h2>
-                <Button className={button} color="primary" variant="outlined">Zobacz więcej<ArrowForwardIcon/></Button>            </div>
+                <Button className={button} color="primary" variant="outlined" component={Link} to="/home">Zobacz więcej<ArrowForwardIcon/></Button>
+            </div>
             <div className="startPage-imageWrapper startPage-imageKids">
                 <h2>DZIECKO</h2>
-                <Button className={button} color="primary" variant="outlined">Zobacz więcej<ArrowForwardIcon/></Button>            </div>
+                <Button className={button} color="primary" variant="outlined" component={Link} to="/home">Zobacz więcej<ArrowForwardIcon/></Button>
+            </div>
         </div>
     );
 }
