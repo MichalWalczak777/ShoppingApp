@@ -5,14 +5,14 @@ import Product from "../product/Product";
 
 const ProductsList = () => {
 
-    const defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 75};
+    const defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: "74,99 PLN"};
 
     const [clothes, setClothes] = useState<Array<ProductModel>>(new Array(20).fill(defaultShirt));
 
     return (
-        <>
-            {clothes.map(c => <Product name={c.name} image={c.image} price = {c.price}/>)}
-        </>
+        <div className="productsList">
+            {clothes.map((c,index) => <Product key= {c.name + index} name={c.name} image={c.image} price = {c.price}/>)}
+        </div>
             )
 }
 

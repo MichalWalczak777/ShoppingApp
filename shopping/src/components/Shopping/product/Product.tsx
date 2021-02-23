@@ -5,10 +5,10 @@ import {ProductModel} from "../../../models/ProductModel";
 const Product = ({name, image, price}: ProductModel) => {
     
         return (
-            <div className="">
-                <img className="" src={image}/>
-                <h2 className="">{name}</h2>
-                <h2 className="">{price}</h2>
+            <div className="product">
+                <img className="product-image" src={image}/>
+                <h2 className="product-name">{name}</h2>
+                <h2 className="product-price">{price}</h2>
             </div>
         )
 
