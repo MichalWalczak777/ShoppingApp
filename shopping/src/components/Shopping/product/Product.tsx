@@ -1,7 +1,8 @@
 import React from "react";
 import pulpFictionShirt from "../../../assets/products/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
+import {ProductModel} from "../../../models/ProductModel";
 
-const Product = ({name, image, price}: {name:string, image:string, price: number}) => {
+const Product = ({name, image, price}: ProductModel) => {
     
         return (
             <div className="">

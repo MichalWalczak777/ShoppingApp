@@ -1,12 +1,13 @@
 import React,{useState} from "react";
 import pulpFictionShirt from "../../../assets/products/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
+import { ProductModel } from "../../../models/ProductModel";
 import Product from "../product/Product";
 
 const ProductsList = () => {
 
-    const defaultShirt:{name:string, image:string, price:number} = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 75};
+    const defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 75};
 
-    const [clothes, setClothes] = useState(new Array(20).fill(defaultShirt));
+    const [clothes, setClothes] = useState<Array<ProductModel>>(new Array(20).fill(defaultShirt));
 
     return (
         <>
