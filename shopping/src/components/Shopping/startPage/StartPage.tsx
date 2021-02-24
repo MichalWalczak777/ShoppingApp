@@ -5,7 +5,6 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 const StartPage = () => {
 
-
     const useStyles = makeStyles(() => ({
         button: {
             border: '1.5px solid white',
