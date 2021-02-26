@@ -1,5 +1,6 @@
 .product{
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .product-image{
@@ -8,5 +9,7 @@
 
 .product-name,
 .product-price{
-    font-size: 1rem;
+    font-size: 0.85rem;
+    margin: 10px 5px;
+    text-transform: capitalize;
 }
