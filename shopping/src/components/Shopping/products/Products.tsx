@@ -4,15 +4,14 @@ import { Autocomplete } from '@material-ui/lab';
 import ProductsList from "../productsList/ProductsList";
 import pulpFictionShirt from "../../../assets/products/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
 import { ProductModel } from "../../../models/ProductModel";
-import { ProductsArrayModel } from "../../../models/ProductsArrayModel";
-
+import ScrollToTop from "../../reusableComponents/ScrollToTop";
 const Products = () => {
 
     const defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: "74,99 PLN"};
-    const productsPerPage: number = 5;
+    const productsPerPage: number = 20;
     const tags: Array<string> = (["wzorzysty podkoszulek", "jeansy czarne", "hawajska koszula", "elegancka koszula", "krótkie spodenki"]);
 
-    const [clothes, setClothes] = useState<Array<ProductModel>>(new Array(22).fill(defaultShirt));
+    const [clothes, setClothes] = useState<Array<ProductModel>>(new Array(220).fill(defaultShirt));
     const [productsToDisplay, setProductsToDisplay] = useState<Array<ProductModel>>([]);
     const [counter, setCounter] = useState<number>(0);
 
@@ -37,6 +36,7 @@ const Products = () => {
 
     return(
         <div className="products">
+            <ScrollToTop showBelow={1000}/>
             <Autocomplete
             options={tags}
             getOptionLabel={(option) => option}
