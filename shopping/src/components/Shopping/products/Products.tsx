@@ -1,23 +1,38 @@
-import React, {useEffect, useState, useRef} from "react";
-import { Button, Chip, TextField } from '@material-ui/core';
+import React, {useEffect, useState} from "react";
 import { Autocomplete } from '@material-ui/lab';
 import ProductsList from "../productsList/ProductsList";
 import pulpFictionShirt from "../../../assets/products/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
 import { ProductModel } from "../../../models/ProductModel";
 import ScrollToTop from "../../reusableComponents/ScrollToTop";
+import {Button,
+        Chip,
+        TextField,
+        makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles(() => ({
+    hidden: {
+      display: "none"
+    }
+}));
+
 const Products = () => {
 
     const defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: "74,99 PLN"};
-    const productsPerPage: number = 20;
+    const productsPerPage: number = 5;
     const tags: Array<string> = (["wzorzysty podkoszulek", "jeansy czarne", "hawajska koszula", "elegancka koszula", "krótkie spodenki"]);
 
-    const [clothes, setClothes] = useState<Array<ProductModel>>(new Array(220).fill(defaultShirt));
+    const {hidden} = useStyles();
+
+    const [clothes, setClothes] = useState<Array<ProductModel>>(new Array(20).fill(defaultShirt));
     const [productsToDisplay, setProductsToDisplay] = useState<Array<ProductModel>>([]);
     const [counter, setCounter] = useState<number>(0);
+    const [isShowMoreButtonVisible, setIsShowMoreButtonVisible] = useState<boolean>(true);
 
     useEffect(() => {
+        setIsShowMoreButtonVisible(true)
         handleShowMoreProducts();
-      }, []);
+      }, [clothes]);
+
 
     const handleShowMoreProducts = () => {
         CalculateProductsToDisplay(counter);
@@ -31,6 +46,7 @@ const Products = () => {
         for(let i = firstProductIndex; i < lastProductIndex; i++){
             clothes[i] && newProducts.push(clothes[i]);
         }
+        [...productsToDisplay, ...newProducts].length === clothes.length && setIsShowMoreButtonVisible(false);
         setProductsToDisplay([...productsToDisplay, ...newProducts]);
     }
 
@@ -50,7 +66,7 @@ const Products = () => {
                     <Chip size="medium" label="Spodnie" color="primary"/>
                 </div>
                 <ProductsList productsArray={productsToDisplay}/>
-                <Button onClick={handleShowMoreProducts}>WCZYTAJ WIĘCEJ PRODUKTÓW</Button>
+                <Button className={!isShowMoreButtonVisible ? hidden : ""} onClick={handleShowMoreProducts}>WCZYTAJ WIĘCEJ PRODUKTÓW</Button>
             </div>
         </div>
     )
