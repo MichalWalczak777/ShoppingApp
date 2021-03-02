@@ -9,6 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { Link } from "react-router-dom";
 
 const Header = () => {
 
@@ -29,14 +30,14 @@ const Header = () => {
             </IconButton>
         )
     }
-    const navigationIcons = [{icon: <AccountCircleIcon/>, name: "account"}, {icon: <SearchIcon/>, name: "search"}, {icon: <ShoppingCartIcon/>, name: "basket"}];
+    const navigationIcons = [{icon: <AccountCircleIcon/>, name: "account", link: "/"}, {icon: <SearchIcon/>, name: "search",  link: "/"}, {icon: <ShoppingCartIcon/>, name: "basket",  link: "/basket"}];
 
     const navigationMenu = () => {
         return (
             <Toolbar className={toolbar}>
                 {hamburgerMenu()}
                 <div className="navigationButtons">
-                    {navigationIcons.map(e => <IconButton key={e.name}>{e.icon}</IconButton>)}
+                    {navigationIcons.map(menuElement => <Link to={menuElement.link} key={menuElement.name}><IconButton>{menuElement.icon}</IconButton></Link>)}
                 </div>
             </Toolbar>)
     }

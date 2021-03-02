@@ -11,7 +11,7 @@ import { Select,
 
 const ProductDetails= ({id}:{id:string}) => {
 
-    const defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: "74,99 PLN"};
+    const defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 74.99};
     const sizes: Array<string> = ["XS", "S", "M", "L", "XL"];
 
     const [size, setSize] = React.useState<string>("");

@@ -10,7 +10,7 @@ const Product = ({name, image, price}: ProductModel) => {
                 <Link to={"/product" + "/" + name+price}>
                 <img className="product-image" src={image}/>
                 <h2 className="product-name">{name}</h2>
-                <h2 className="product-price">{price}</h2>
+                <h2 className="product-price">{price + " PLN"}</h2>
                 </Link>
             </div>
         )
