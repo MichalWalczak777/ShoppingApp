@@ -3,19 +3,27 @@ import { SizedProductModel } from "../../../models/SizedProductModel";
 import pulpFictionShirt from "../../../assets/products/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
 import BasketElement from "../basketElement/BasketElement";
 import { Button } from "@material-ui/core";
+import { useSelector } from "react-redux";
 
 const ShoppingBasket = () => {
 
     const deliveryCost: number = 9.99;
+    const clothesInBasket = useSelector((state: any) => state.basket);
 
     const defaultShirt: SizedProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 74.99, size: "L"};
     const [clothes, setClothes] = useState<Array<SizedProductModel>>(new Array(3).fill(defaultShirt));
     const [basketValue, setBasketValue] = useState<number>(0);
 
     useEffect(() => {
+        setClothes(clothesInBasket);
+    },[clothesInBasket]);
+
+    useEffect(() => {
         CalculateBasketValue();
         CalculateFinalPrice();
     },[clothes]);
+
+
 
     const CalculateBasketValue = (): void => {
         let summaryProductsValue: number = 0;

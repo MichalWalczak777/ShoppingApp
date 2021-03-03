@@ -1,35 +1,54 @@
-import React from "react";
+import React, { useEffect } from "react";
 import pulpFictionShirt from "../../../assets/products/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
 import { ProductModel } from "../../../models/ProductModel";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { useDispatch } from "react-redux";
+import { addToBasket } from "../../../redux/actions"
 import { Select,
     MenuItem,
     Button,
     makeStyles, 
     FormControl,
     InputLabel} from '@material-ui/core';
+import { SizedProductModel } from "../../../models/SizedProductModel";
+
+const useStyles = makeStyles(() => ({
+    productDetailsButton: {
+        height: "56px",
+        width: "48%"
+    },
+    productDetailsSelectSize: {
+        height: "100%",
+        width: "48%"
+    }
+}));
 
 const ProductDetails= ({id}:{id:string}) => {
 
     const defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 74.99};
     const sizes: Array<string> = ["XS", "S", "M", "L", "XL"];
+    const dispatch = useDispatch();
 
-    const [size, setSize] = React.useState<string>("");
+    const [size, setSize] = React.useState<string>(" ");
+    const [sizedProduct, setSizedProduct] = React.useState<SizedProductModel>({...defaultShirt, size: " "});
 
-    const useStyles = makeStyles(() => ({
-        productDetailsButton: {
-            height: "56px",
-            width: "48%"
-        },
-        productDetailsSelectSize: {
-            height: "100%",
-            width: "48%"
+    useEffect(()=> {
+        const productToAdd = {
+            name: "podkoszulek pulp fiction",
+            image: pulpFictionShirt,
+            price: 74.99,
+            size: size
         }
-    }));
+        setSizedProduct(productToAdd);
+    },[size])
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         setSize(event.target.value as string);
       };
+
+    const handleClick = () => {
+        dispatch(addToBasket(sizedProduct));
+    }
 
     const {productDetailsButton, productDetailsSelectSize} = useStyles();
 
@@ -55,7 +74,7 @@ const ProductDetails= ({id}:{id:string}) => {
                         {sizes.map(itemSize => <MenuItem key={itemSize} value={itemSize}>{itemSize}</MenuItem>)}
                     </Select>
                 </FormControl>
-                <Button className={productDetailsButton} variant="contained" color="primary">
+                <Button className={productDetailsButton} variant="contained" color="primary" onClick={handleClick}>
                     <ShoppingCartIcon/>
                     DODAJ
                 </Button>
