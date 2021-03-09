@@ -46,10 +46,7 @@ const BasketElement = ({sizedProduct}: {sizedProduct:SizedProductModel}) => {
                 <p>{sizedProduct.name}</p>
                 <p>{sizedProduct.price + " PLN"}</p>
                 <p>Rozmiar: {" " + sizedProduct.size}</p>
-                <p>Suma: {(sizedProduct.price * sizedProduct.quantity).toLocaleString('en-US', {
-                    minimumIntegerDigits: 2,
-                    useGrouping: false
-                    }) + " PLN"}</p>
+                <p>Suma: {(sizedProduct.price * sizedProduct.quantity).toFixed(2) + " PLN"}</p>
                 <FormControl>
                     <Select variant="outlined"
                             id="basketElement-selectQuantity"

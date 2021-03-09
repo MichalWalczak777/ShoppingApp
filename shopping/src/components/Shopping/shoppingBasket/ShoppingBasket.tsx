@@ -15,7 +15,6 @@ const ShoppingBasket = () => {
     const [basketValue, setBasketValue] = useState<number>(0);
 
     useEffect(() => {
-        // const productsArray: Array<SizedProductModel>  = Object.values(basketGlobalState);
         setClothes(Object.values(basketGlobalState));
     },[basketGlobalState]);
 
@@ -25,26 +24,25 @@ const ShoppingBasket = () => {
     },[clothes]);
 
 
-
     const CalculateBasketValue = (): void => {
         let summaryProductsValue: number = 0;
         for (let i = 0; i < clothes.length; i++){
-            summaryProductsValue+=clothes[i].price;
+            summaryProductsValue+=clothes[i].price*clothes[i].quantity; 
         }
         setBasketValue(summaryProductsValue);
     }
 
-    const CalculateFinalPrice = (): number => (basketValue + deliveryCost);
-
+    const CalculateFinalPrice = (): number => basketValue !== 0 ? basketValue + deliveryCost: basketValue;
+    const displayDeliveryCost = (): number => basketValue !== 0 ? deliveryCost: 0;
     return (
         <div className="shoppingBasket-container">
             <h2 className="shoppingBasket-mainHeader">Twój koszyk</h2>
                 {clothes?.map((product, i) => <BasketElement sizedProduct={product} key={product.name+i}></BasketElement>)}
             <div className="shoppingBasket-summary">
                 <h2 className="shoppingBasket-summaryHeader">Podsumowanie</h2>
-                <p>Wartość koszyka: {basketValue}</p>
-                <p>Koszty wysyłki: {deliveryCost}</p>
-                <p>Łącznie do zapłaty: {CalculateFinalPrice()}</p>
+                <p>Wartość koszyka: {basketValue.toFixed(2) + " PLN"}</p>
+                <p>Koszty wysyłki: {displayDeliveryCost().toFixed(2) + " PLN"}</p>
+                <p>Łącznie do zapłaty: {CalculateFinalPrice().toFixed(2) + " PLN"}</p> 
                 <Button>IDŹ DO KASY</Button>
             </div>
         </div>
