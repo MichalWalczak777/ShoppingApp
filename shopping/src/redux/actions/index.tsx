@@ -14,4 +14,11 @@ export const removeFromBasket = (key: string) => {
   };
 }
 
+export const changeBasketItem = (product:SizedProductModel, quantity: number, key: string) => {
+  return {
+      type: "CHANGE_BASKET_ITEM",
+      payload: {product, quantity, key}
+  }
+}
+
 

@@ -3,7 +3,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { FormControl, InputLabel, Select, MenuItem, IconButton } from "@material-ui/core";
 import { SizedProductModel } from "../../../models/SizedProductModel";
 import { useDispatch } from "react-redux";
-import { removeFromBasket } from "../../../redux/actions";
+import { changeBasketItem, removeFromBasket } from "../../../redux/actions";
 
 const BasketElement = ({sizedProduct}: {sizedProduct:SizedProductModel}) => {
 
@@ -22,9 +22,9 @@ const BasketElement = ({sizedProduct}: {sizedProduct:SizedProductModel}) => {
         dispatch(removeFromBasket(productKey));
     }
 
-    const handleChange = () => {
-
-    }
+    const handleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+        dispatch(changeBasketItem(sizedProduct, e.target.value as number, productKey));
+      };
 
     const fillQuantitiesArray = () => {
         let quantitiesArray = [];
