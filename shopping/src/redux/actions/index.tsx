@@ -7,11 +7,11 @@ export const addToBasket = (product:SizedProductModel, key: string) => {
   };
 }
 
-export const removeFromBasket = (index: number) => {
-    return{
-    type: "REMOVE_FROM_BASKET",
-    payload: index
-    };
-  }
+export const removeFromBasket = (key: string) => {
+  return{
+  type: "REMOVE_FROM_BASKET",
+  payload: key
+  };
+}
 
 
