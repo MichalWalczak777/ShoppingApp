@@ -2,10 +2,10 @@ import React from "react";
 import './styles/main.scss';
 import Header from "./components/generalUI/header/Header";
 import Footer from "./components/generalUI/footer/Footer";
-import StartPage from "./components/shopping/startPage/StartPage";
-import Products from "./components/shopping/products/Products";
-import ProductDetails from "./components/shopping/productDetails/ProductDetails";
-import ShoppingBasket from "./components/shopping/shoppingBasket/ShoppingBasket";
+import StartPage from "./components/Shopping/startPage/StartPage";
+import Products from "./components/Shopping/products/Products";
+import ProductDetails from "./components/Shopping/productDetails/ProductDetails";
+import ShoppingBasket from "./components/Shopping/shoppingBasket/ShoppingBasket";
 import {
   HashRouter,
   Route,

@@ -8,15 +8,16 @@ import { useSelector } from "react-redux";
 const ShoppingBasket = () => {
 
     const deliveryCost: number = 9.99;
-    const clothesInBasket = useSelector((state: any) => state.basket);
+    const basketGlobalState = useSelector((state: any) => state.basket);
 
-    const defaultShirt: SizedProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 74.99, size: "L"};
+    const defaultShirt: SizedProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 74.99, size: "L", quantity: 1};
     const [clothes, setClothes] = useState<Array<SizedProductModel>>(new Array(3).fill(defaultShirt));
     const [basketValue, setBasketValue] = useState<number>(0);
 
     useEffect(() => {
-        setClothes(clothesInBasket);
-    },[clothesInBasket]);
+        // const productsArray: Array<SizedProductModel>  = Object.values(basketGlobalState);
+        setClothes(Object.values(basketGlobalState));
+    },[basketGlobalState]);
 
     useEffect(() => {
         CalculateBasketValue();
@@ -38,7 +39,7 @@ const ShoppingBasket = () => {
     return (
         <div className="shoppingBasket-container">
             <h2 className="shoppingBasket-mainHeader">Twój koszyk</h2>
-                {clothes?.map((product, i) => <BasketElement product={product} key={product.name+i}></BasketElement>)}
+                {clothes?.map((product, i) => <BasketElement sizedProduct={product} key={product.name+i}></BasketElement>)}
             <div className="shoppingBasket-summary">
                 <h2 className="shoppingBasket-summaryHeader">Podsumowanie</h2>
                 <p>Wartość koszyka: {basketValue}</p>

@@ -30,14 +30,15 @@ const ProductDetails= ({id}:{id:string}) => {
     const dispatch = useDispatch();
 
     const [size, setSize] = React.useState<string>(" ");
-    const [sizedProduct, setSizedProduct] = React.useState<SizedProductModel>({...defaultShirt, size: " "});
+    const [sizedProduct, setSizedProduct] = React.useState<SizedProductModel>({...defaultShirt, size: " ", quantity: 1});
 
     useEffect(()=> {
         const productToAdd = {
             name: "podkoszulek pulp fiction",
             image: pulpFictionShirt,
             price: 74.99,
-            size: size
+            size: size,
+            quantity: 1
         }
         setSizedProduct(productToAdd);
     },[size])
@@ -47,7 +48,7 @@ const ProductDetails= ({id}:{id:string}) => {
       };
 
     const handleClick = () => {
-        dispatch(addToBasket(sizedProduct));
+        dispatch(addToBasket(sizedProduct, sizedProduct.name + sizedProduct.size));
     }
 
     const {productDetailsButton, productDetailsSelectSize} = useStyles();

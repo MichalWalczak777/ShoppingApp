@@ -3,4 +3,5 @@ export interface SizedProductModel{
     image: string;
     price: number;
     size: string;
+    quantity: number;
 }

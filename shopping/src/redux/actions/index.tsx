@@ -1,11 +1,11 @@
 import { SizedProductModel } from "../../models/SizedProductModel";
 
-export const addToBasket = (product:SizedProductModel) => {
-    return{
-    type: "ADD_TO_BASKET",
-    payload: product
-    };
-  }
+export const addToBasket = (product:SizedProductModel, key: string) => {
+  return{
+  type: "ADD_TO_BASKET",
+  payload: {product, key}
+  };
+}
 
 export const removeFromBasket = (index: number) => {
     return{

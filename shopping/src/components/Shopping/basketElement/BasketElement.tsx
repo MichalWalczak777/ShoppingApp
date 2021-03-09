@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import DeleteIcon from '@material-ui/icons/Delete';
 import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
-import { SizedProductPropsModel } from "../../../models/SizedProductPropsModel";
+import { SizedProductModel } from "../../../models/SizedProductModel";
 
-const BasketElement: React.FC<SizedProductPropsModel> = (sizedProduct) => {
+const BasketElement = ({sizedProduct}: {sizedProduct:SizedProductModel}) => {
 
-    const product = sizedProduct.product;
+    const product: SizedProductModel = sizedProduct;
     const maxQuantity: number = 10;
     
     const [possibleQuantities, setPossibleQuantities] = useState<Array<number>> ([]);

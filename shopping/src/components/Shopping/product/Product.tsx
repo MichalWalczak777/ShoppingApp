@@ -1,5 +1,4 @@
 import React from "react";
-import pulpFictionShirt from "../../../assets/products/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
 import {ProductModel} from "../../../models/ProductModel";
 import {Link} from 'react-router-dom';
 
