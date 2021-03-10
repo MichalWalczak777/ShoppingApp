@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore, compose } from "redux";
+import { createStore, compose, $CombinedState } from "redux";
 import allReducer from "./redux/reducers";
 import { Provider } from 'react-redux';
 
@@ -13,12 +13,28 @@ declare global {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(allReducer, composeEnhancers())
+const store = createStore(allReducer, loadFromLocalStorage(), composeEnhancers());
 
-// const store = createStore(
-//   allReducer,
-//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+function saveToLocalStorage(state:any) {
+  try {
+    const serialisedState = JSON.stringify(state);
+    localStorage.setItem("state", serialisedState);
+  } catch {
+    
+  }
+}
 
+function loadFromLocalStorage() {
+  try {
+    const serialisedState = localStorage.getItem("state");
+    if (serialisedState === null) return undefined;
+    return JSON.parse(serialisedState);
+  } catch (e) {
+    return undefined;
+  }
+}
+
+store.subscribe(() => saveToLocalStorage(store.getState()));
 
 ReactDOM.render(
   <React.StrictMode>
