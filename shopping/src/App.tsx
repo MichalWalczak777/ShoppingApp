@@ -11,6 +11,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
+import authPanel from "./components/auth/authPanel";
 
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
           <Route exact path="/products" component={Products}/>
           <Route exact path="/basket" component={ShoppingBasket}/>
           <Route exact path="/product/:id" component={ProductDetails}/>
+          <Route exact path="/authPanel" component={authPanel}/>
       </Switch>
       <Footer/>                                                                                                                                                                                                              
     </HashRouter>

@@ -1,9 +1,11 @@
-import { Button } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import React from "react";
 import {useState, useRef} from "react";
+import useStyles from "./authStyles";
 
 const Register = () => {
 
+    const {authInput, authForm} = useStyles();
     const [fields, setFields] = useState(
         {
             email: "",
@@ -24,24 +26,12 @@ const Register = () => {
 
     return (
         <div className="login container">
-            <h2>Załóż konto</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name="email" id="email" onChange={handleChange}/>
-                </div>
-                <div>
-                    <label htmlFor="password">Hasło</label>
-                    <input type="password" name="password" id="password" onChange={handleChange}/>
-                </div>
-                <div>
-                    <label htmlFor="password-repeat">Powtórz hasło</label>
-                    <input type="password" name="passwordRepeated" id="password-repeat" onChange={handleChange}/>
-                </div>
+            <form className={authForm} onSubmit={handleSubmit}>
+                    <TextField className={authInput} type="email" name="email" label="Email" variant="outlined" onChange={handleChange} />
+                    <TextField className={authInput} type="password" name="password" label="Password" variant="outlined" onChange={handleChange} />
+                    <TextField className={authInput} type="password" name="passwordRepeated" label="Repeat password" variant="outlined" onChange={handleChange} />
+                    <Button onClick={handleSubmit}>ZAŁÓŻ KONTO</Button>
             </form>
-            <div>
-                <Button onClick={handleSubmit}>ZAŁÓŻ KONTO</Button>
-            </div>
         </div>
 
     );

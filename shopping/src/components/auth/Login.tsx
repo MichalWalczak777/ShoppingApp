@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Button } from "@material-ui/core";
+import { Button, makeStyles, TextField } from "@material-ui/core";
+import { FullscreenExitTwoTone } from "@material-ui/icons";
+import useStyles from "./authStyles";
 
 const Login = () => {
 
+    const {authInput, authForm} = useStyles();
     const [fields, setFields] = useState(
         {
             email: "",
@@ -25,18 +28,11 @@ const Login = () => {
     return (
 
         <div>
-            <h2>Zaloguj się</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name="email" id="email" onChange={handleChange}/>
-                </div>
-                <div>
-                    <label htmlFor="password">Hasło</label>
-                    <input type="password" name="password" id="password" onChange={handleChange}/>
-                </div>
+            <form className={authForm} onSubmit={handleSubmit}>
+                    <TextField className={authInput} type="email" name="email" label="Email" variant="outlined" onChange={handleChange} />
+                    <TextField className={authInput} type="password" name="password" label="Password" variant="outlined" onChange={handleChange} />
+                    <Button onClick={handleSubmit}>ZALOGUJ SIĘ</Button>
             </form>
-            <Button onClick={handleSubmit}>ZALOGUJ SIĘ</Button>
         </div>
         )
 }

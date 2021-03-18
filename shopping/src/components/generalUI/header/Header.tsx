@@ -30,7 +30,7 @@ const Header = () => {
             </IconButton>
         )
     }
-    const navigationIcons = [{icon: <AccountCircleIcon/>, name: "account", link: "/login"}, {icon: <SearchIcon/>, name: "search",  link: "/"}, {icon: <ShoppingCartIcon/>, name: "basket",  link: "/basket"}];
+    const navigationIcons = [{icon: <AccountCircleIcon/>, name: "account", link: "/authPanel"}, {icon: <SearchIcon/>, name: "search",  link: "/"}, {icon: <ShoppingCartIcon/>, name: "basket",  link: "/basket"}];
 
     const navigationMenu = () => {
         return (
