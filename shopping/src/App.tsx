@@ -15,7 +15,7 @@ import AuthPanel from "./components/auth/AuthPanel";
 import { useDispatch } from "react-redux";
 import firebase from "./firebase";
 import { login } from "./redux/actions/auth";
-import PrivateRoute from "./components/reusableComponents/PrivateRoute";
+import PrivateRoute from "./components/auth/PrivateRoute";
 import AccountDetails from "./components/auth/accountDetails/AccountDetails";
 
 const App = () => {
