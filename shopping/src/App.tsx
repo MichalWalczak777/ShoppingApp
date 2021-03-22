@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './styles/main.scss';
 import Header from "./components/generalUI/header/Header";
 import Footer from "./components/generalUI/footer/Footer";
@@ -12,9 +12,20 @@ import {
   Switch
 } from 'react-router-dom';
 import authPanel from "./components/auth/authPanel";
-
+import { useDispatch } from "react-redux";
+import firebase from "./firebase";
+import { login } from "./redux/actions/auth";
 
 const App = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log(firebase.auth());
+    firebase.auth().onAuthStateChanged(user => dispatch(login(user)));
+  }, []);
+
+
   return (
     <>
     <HashRouter>

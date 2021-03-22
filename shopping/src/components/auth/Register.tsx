@@ -1,4 +1,5 @@
 import { Button, TextField } from "@material-ui/core";
+import firebase from "../../firebase";
 import React from "react";
 import {useState, useRef} from "react";
 import useStyles from "./authStyles";
@@ -20,8 +21,13 @@ const Register = () => {
             [name] : value}));
     }
 
+    const validateData = () =>{
+        return (fields.password === fields.passwordRepeated);
+    }
+
     const handleSubmit = (e: React.FormEvent)=> {
         e.preventDefault();
+        validateData() && firebase.auth().createUserWithEmailAndPassword(fields.email, fields.password);
     }
 
     return (

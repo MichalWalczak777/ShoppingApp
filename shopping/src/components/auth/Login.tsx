@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button, makeStyles, TextField } from "@material-ui/core";
 import { FullscreenExitTwoTone } from "@material-ui/icons";
 import useStyles from "./authStyles";
+import firebase from "../../firebase";
 
 const Login = () => {
 
@@ -22,6 +23,7 @@ const Login = () => {
     
     const handleSubmit = (e: React.FormEvent)=> {
         e.preventDefault();
+        firebase.auth().signInWithEmailAndPassword(fields.email, fields.password);
     }
 
 
