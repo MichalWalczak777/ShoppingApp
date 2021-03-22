@@ -1,0 +1,14 @@
+@import "../../../styles/variables";
+
+.accountPanel{
+    margin-top: $header-height;
+    font-family: Roboto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.accountPanel-currentUser{
+    margin: 50px;
+}

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore, compose, $CombinedState } from "redux";
-import allReducer from "./redux/reducers";
+import rootReducer from "./redux/reducers";
 import { Provider } from 'react-redux';
 
 declare global {
@@ -13,7 +13,7 @@ declare global {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(allReducer, loadFromLocalStorage(), composeEnhancers());
+const store = createStore(rootReducer, loadFromLocalStorage(), composeEnhancers());
 
 function saveToLocalStorage(state:any) {
   try {

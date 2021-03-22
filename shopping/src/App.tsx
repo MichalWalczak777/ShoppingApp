@@ -11,17 +11,18 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import authPanel from "./components/auth/authPanel";
+import AuthPanel from "./components/auth/AuthPanel";
 import { useDispatch } from "react-redux";
 import firebase from "./firebase";
 import { login } from "./redux/actions/auth";
+import PrivateRoute from "./components/reusableComponents/PrivateRoute";
+import AccountDetails from "./components/auth/accountDetails/AccountDetails";
 
 const App = () => {
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(firebase.auth());
     firebase.auth().onAuthStateChanged(user => dispatch(login(user)));
   }, []);
 
@@ -35,7 +36,8 @@ const App = () => {
           <Route exact path="/products" component={Products}/>
           <Route exact path="/basket" component={ShoppingBasket}/>
           <Route exact path="/product/:id" component={ProductDetails}/>
-          <Route exact path="/authPanel" component={authPanel}/>
+          <Route exact path="/authPanel" component={AuthPanel}/>
+          <PrivateRoute exact path="/accountDetails" component={AccountDetails}/>
       </Switch>
       <Footer/>                                                                                                                                                                                                              
     </HashRouter>
