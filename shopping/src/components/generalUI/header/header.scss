@@ -3,3 +3,19 @@
 .header-appHeader{
     margin-bottom: $header-height;
 }
+
+.header-drawerMenu{
+    width: 80vw;
+}
+
+.header-drawerMenuClose{
+    height: $header-height;
+}
+
+.header-drawerMenuOption{
+    background-color: #fff;
+    border: none;
+    font-family: "roboto";
+    font-size: 1.15rem;
+    padding: 10px 20px;
+}
