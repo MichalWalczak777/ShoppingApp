@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import pulpFictionShirt from "../../../assets/products/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
+import pulpFictionShirt from "../../../assets/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
 import { ProductModel } from "../../../models/ProductModel";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { useDispatch } from "react-redux";

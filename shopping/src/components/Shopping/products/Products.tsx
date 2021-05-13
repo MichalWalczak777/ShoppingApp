@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from "react";
 import { Autocomplete } from '@material-ui/lab';
 import ProductsList from "../productsList/ProductsList";
-import pulpFictionShirt from "../../../assets/products/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
+import pulpFictionShirt from "../../../assets/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
 import { ProductModel } from "../../../models/ProductModel";
 import ScrollToTop from "../../reusableComponents/ScrollToTop";
 import {Button,
         Chip,
         TextField,
         makeStyles } from '@material-ui/core';
+import "../../../products";
+import { products } from "../../../products";
 
 const useStyles = makeStyles(() => ({
     hidden: {
@@ -18,12 +20,12 @@ const useStyles = makeStyles(() => ({
 const Products = () => {
 
     const defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 74.99};
-    const productsPerPage: number = 5;
+    const productsPerPage: number = 20;
     const tags: Array<string> = (["wzorzysty podkoszulek", "jeansy czarne", "hawajska koszula", "elegancka koszula", "krótkie spodenki"]);
 
     const {hidden} = useStyles();
 
-    const [clothes, setClothes] = useState<Array<ProductModel>>(new Array(20).fill(defaultShirt));
+    const [clothes, setClothes] = useState<Array<ProductModel>>(products);
     const [productsToDisplay, setProductsToDisplay] = useState<Array<ProductModel>>([]);
     const [counter, setCounter] = useState<number>(0);
     const [isShowMoreButtonVisible, setIsShowMoreButtonVisible] = useState<boolean>(true);
@@ -46,7 +48,7 @@ const Products = () => {
         for(let i = firstProductIndex; i < lastProductIndex; i++){
             clothes[i] && newProducts.push(clothes[i]);
         }
-        [...productsToDisplay, ...newProducts].length === clothes.length && setIsShowMoreButtonVisible(false);
+        ([...productsToDisplay, ...newProducts].length === clothes.length) && setIsShowMoreButtonVisible(false);
         setProductsToDisplay([...productsToDisplay, ...newProducts]);
     }
 

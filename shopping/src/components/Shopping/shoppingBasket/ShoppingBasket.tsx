@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SizedProductModel } from "../../../models/SizedProductModel";
-import pulpFictionShirt from "../../../assets/products/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
+import pulpFictionShirt from "../../../assets/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
 import BasketElement from "../basketElement/BasketElement";
 import { Button } from "@material-ui/core";
 import { useSelector } from "react-redux";
