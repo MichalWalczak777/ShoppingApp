@@ -39,7 +39,7 @@ const Header = () => {
         )
     }
     const navigationIcons = [{icon: <AccountCircleIcon/>, name: "account", link: "/accountDetails"}, {icon: <SearchIcon/>, name: "search",  link: "/"}, {icon: <ShoppingCartIcon/>, name: "basket",  link: "/basket"}];
-    const drawerMenuOptions = [{name: "ONA", link: "/"}, {name: "ON", link: "/"}, {name: "DZIECKO", link: "/"}]
+    const drawerMenuOptions = [{name: "ONA", link: "/woman"}, {name: "ON", link: "/man"}, {name: "DZIECKO", link: "/kid"}]
 
     const navigationMenu = () => {
         return (

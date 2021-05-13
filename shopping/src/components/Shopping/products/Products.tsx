@@ -8,8 +8,8 @@ import {Button,
         Chip,
         TextField,
         makeStyles } from '@material-ui/core';
-import "../../../products";
-import { products } from "../../../products";
+import "../../../woman";
+import { ProductsArrayModel } from "../../../models/ProductsArrayModel";
 
 const useStyles = makeStyles(() => ({
     hidden: {
@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const Products = () => {
+const Products = ({productsArray, mainHeader}:{productsArray:Array<ProductModel>, mainHeader:string}) => {
 
     const defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 74.99};
     const productsPerPage: number = 20;
@@ -25,7 +25,7 @@ const Products = () => {
 
     const {hidden} = useStyles();
 
-    const [clothes, setClothes] = useState<Array<ProductModel>>(products);
+    const [clothes, setClothes] = useState<Array<ProductModel>>(productsArray);
     const [productsToDisplay, setProductsToDisplay] = useState<Array<ProductModel>>([]);
     const [counter, setCounter] = useState<number>(0);
     const [isShowMoreButtonVisible, setIsShowMoreButtonVisible] = useState<boolean>(true);
@@ -61,7 +61,7 @@ const Products = () => {
             renderInput={(params) => <TextField {...params} label="Szukaj" variant="outlined" />}
             />
             <div className="products-container">
-                <h2 className="products-mainHeader">Odzież męska</h2>
+                <h2 className="products-mainHeader">{mainHeader}</h2>
                 <div className="products-chips">
                     <Chip size="medium" label="Podkoszulki" color="primary"/>
                     <Chip size="medium" label="Koszule" color="primary"/>

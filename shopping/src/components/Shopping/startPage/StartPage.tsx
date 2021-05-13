@@ -20,15 +20,15 @@ const StartPage = () => {
         <div className="startPage">
             <div className="startPage-imageWrapper startPage-imageWoman">
                 <h2>KOBIETA</h2>
-                <Button className={button} color="primary" variant="outlined" component={Link} to="/products">Zobacz więcej<ArrowForwardIcon/></Button>
+                <Button className={button} color="primary" variant="outlined" component={Link} to="/woman">Zobacz więcej<ArrowForwardIcon/></Button>
             </div>
             <div className="startPage-imageWrapper startPage-imageMan">
                 <h2>MĘŻCZYZNA</h2>
-                <Button className={button} color="primary" variant="outlined" component={Link} to="/products">Zobacz więcej<ArrowForwardIcon/></Button>
+                <Button className={button} color="primary" variant="outlined" component={Link} to="/man">Zobacz więcej<ArrowForwardIcon/></Button>
             </div>
             <div className="startPage-imageWrapper startPage-imageKids">
                 <h2>DZIECKO</h2>
-                <Button className={button} color="primary" variant="outlined" component={Link} to="/products">Zobacz więcej<ArrowForwardIcon/></Button>
+                <Button className={button} color="primary" variant="outlined" component={Link} to="/kid">Zobacz więcej<ArrowForwardIcon/></Button>
             </div>
         </div>
     );

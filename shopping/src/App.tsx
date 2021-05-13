@@ -17,6 +17,11 @@ import firebase from "./firebase";
 import { login } from "./redux/actions/auth";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import AccountDetails from "./components/auth/accountDetails/AccountDetails";
+import { womensProducts } from "./woman";
+import { kidsProducts } from "./kid";
+
+
+
 
 const App = () => {
 
@@ -33,7 +38,10 @@ const App = () => {
       <Header/>  
       <Switch>
           <Route exact path="/" component={StartPage}/>
-          <Route exact path="/products" component={Products}/>
+          {/* <Route exact path="/woman" component={Products}/> */}
+          <Route key="womens-clothing" exact path="/woman" render={(props) => <Products {...props} productsArray = {womensProducts} mainHeader="Odzież damska" />} />
+          <Route key="mens-clothing" exact path="/man" render={(props) => <Products {...props} productsArray = {womensProducts} mainHeader="Odzież męska" />} />
+          <Route key="kids-clothing" exact path="/kid" render={(props) => <Products {...props} productsArray = {kidsProducts} mainHeader="Odzież dziecięca" />} />
           <Route exact path="/basket" component={ShoppingBasket}/>
           <Route exact path="/product/:id" component={ProductDetails}/>
           <Route exact path="/authPanel" component={AuthPanel}/>

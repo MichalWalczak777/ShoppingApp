@@ -1,6 +1,6 @@
 import { ProductModel } from "./models/ProductModel";
 
-export const products: Array<ProductModel> = [
+export const womensProducts: Array<ProductModel> = [
     {name: "bluza czarna", image: "/products/female/blouse_black.jpg", price:99.99},
     // {name: "bluza niebieska", image:"./products/female/blouse_blue.jpg", price:89.99},
     {name: "bluza pomarańczowa", image:"./products/female/blouse_orange.jpg", price:89.99},
