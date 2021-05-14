@@ -19,6 +19,7 @@ import PrivateRoute from "./components/auth/PrivateRoute";
 import AccountDetails from "./components/auth/accountDetails/AccountDetails";
 import { womensProducts } from "./woman";
 import { kidsProducts } from "./kid";
+import { mensProducts } from "./man";
 
 
 
@@ -40,7 +41,7 @@ const App = () => {
           <Route exact path="/" component={StartPage}/>
           {/* <Route exact path="/woman" component={Products}/> */}
           <Route key="womens-clothing" exact path="/woman" render={(props) => <Products {...props} productsArray = {womensProducts} mainHeader="Odzież damska" />} />
-          <Route key="mens-clothing" exact path="/man" render={(props) => <Products {...props} productsArray = {womensProducts} mainHeader="Odzież męska" />} />
+          <Route key="mens-clothing" exact path="/man" render={(props) => <Products {...props} productsArray = {mensProducts} mainHeader="Odzież męska" />} />
           <Route key="kids-clothing" exact path="/kid" render={(props) => <Products {...props} productsArray = {kidsProducts} mainHeader="Odzież dziecięca" />} />
           <Route exact path="/basket" component={ShoppingBasket}/>
           <Route exact path="/product/:id" component={ProductDetails}/>
