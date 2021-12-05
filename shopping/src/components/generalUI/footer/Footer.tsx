@@ -29,7 +29,7 @@ const Footer = () => {
 
 
     return (
-        <footer>
+        <footer className="footer-Appfooter">
             {footerData?.map(data => 
                     <Accordion key={"accordion" + data.summary}>
                         <AccordionSummary>
@@ -42,10 +42,12 @@ const Footer = () => {
                             </ul>
                         </AccordionDetails>
                     </Accordion>)}
-            <div>
-                <FacebookIcon/>
-                <InstagramIcon/>
-                <YouTubeIcon/>
+            <div className="footer-socialMedia">
+                <div className="footer-socialMediaIcons">
+                    <FacebookIcon/>
+                    <InstagramIcon/>
+                    <YouTubeIcon/>
+                </div>
             </div>
         </footer>
     );

@@ -3,7 +3,9 @@
 @import "fonts";
 @import "general";
 
+
 @import "../components/generalUI/header/header";
+@import "../components/generalUI/footer/footer";
 @import "../components/shopping/startPage/startPage";
 @import "../components/shopping/products/products";
 @import "../components/shopping/product/product";
@@ -11,7 +13,8 @@
 @import "../components/shopping/productsList/productsList";
 @import "../components/shopping/basketElement/basketElement";
 @import "../components/shopping/shoppingBasket/shoppingBasket";
-@import "../components/auth/accountDetails/accountDetails"
+@import "../components/auth/accountDetails/accountDetails";
+
 
 
 

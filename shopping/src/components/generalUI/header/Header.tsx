@@ -44,7 +44,7 @@ const Header = () => {
     const navigationMenu = () => {
         return (
             <Toolbar className={toolbar}>
-                {hamburgerMenu()}
+                <div>{hamburgerMenu()}YOURSHOP</div>
                 <div className="navigationButtons">
                     {navigationIcons.map(menuElement => <Link to={menuElement.link} key={menuElement.name}><IconButton>{menuElement.icon}</IconButton></Link>)}
                 </div>

@@ -11,7 +11,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import AuthPanel from "./components/auth/AuthPanel";
+import AuthPanel from "./components/auth/authPanel";
 import { useDispatch } from "react-redux";
 import firebase from "./firebase";
 import { login } from "./redux/actions/auth";
