@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
 
 const Products = ({productsArray, mainHeader}:{productsArray:Array<ProductModel>, mainHeader:string}) => {
 
-    const defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 74.99};
+    const defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 74.99, id:'w1'};
     const productsPerPage: number = 20;
     const tags: Array<string> = (["wzorzysty podkoszulek", "jeansy czarne", "hawajska koszula", "elegancka koszula", "krótkie spodenki"]);
 

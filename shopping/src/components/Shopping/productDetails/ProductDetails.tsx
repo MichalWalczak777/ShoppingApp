@@ -12,6 +12,11 @@ import { Select,
     InputLabel} from '@material-ui/core';
 import { SizedProductModel } from "../../../models/SizedProductModel";
 
+import { womensProducts } from '../../../woman';
+import { mensProducts } from '../../../man';
+import { kidsProducts } from '../../../kid';
+import { useParams } from 'react-router-dom';
+
 const useStyles = makeStyles(() => ({
     productDetailsButton: {
         height: "56px",
@@ -23,9 +28,23 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const ProductDetails= ({id}:{id:string}) => {
+const ProductDetails= () => {
 
-    const defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 74.99};
+    const paramId:{id:string} = useParams();
+    const id:string = paramId.id;
+
+    let defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 74.99, id: 'w1'};
+
+    if (id.charAt(0)==='w'){
+        defaultShirt = womensProducts.filter(item => item.id === id)[0]
+    }
+    else if (id.charAt(0)==='m'){
+        defaultShirt = mensProducts.filter(item => item.id === id)[0]
+    }
+    else if (id.charAt(0)==='k'){
+        defaultShirt = kidsProducts.filter(item => item.id === id)[0]
+    }
+
     const sizes: Array<string> = ["XS", "S", "M", "L", "XL"];
     const dispatch = useDispatch();
 
