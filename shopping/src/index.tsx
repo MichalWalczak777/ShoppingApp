@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { createStore, compose, $CombinedState } from "redux";
 import rootReducer from "./redux/reducers";
 import { Provider } from 'react-redux';
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 declare global {
   interface Window {
@@ -14,6 +15,17 @@ declare global {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer, loadFromLocalStorage(), composeEnhancers());
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#2E4A72"
+               },
+    secondary: {
+      main: "#F0F0F1"
+                }    
+           }
+});
 
 function saveToLocalStorage(state:any) {
   try {
@@ -39,7 +51,9 @@ store.subscribe(() => saveToLocalStorage(store.getState()));
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
