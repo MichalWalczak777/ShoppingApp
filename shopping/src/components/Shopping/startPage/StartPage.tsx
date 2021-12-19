@@ -11,24 +11,27 @@ const StartPage = () => {
             borderRadius: '5px',
             color: 'white',
             zIndex: 2
+        },
+        buttonLabel: {
+            paddingRight: '8px'
         }
     }));
 
-    const {button} = useStyles();
+    const {button, buttonLabel} = useStyles();
 
     return (
         <div className="startPage">
             <div className="startPage-imageWrapper startPage-imageWoman">
                 <h2>KOBIETA</h2>
-                <Button className={button} color="primary" variant="outlined" component={Link} to="/woman">Zobacz więcej<ArrowForwardIcon/></Button>
+                <Button className={button} color="primary" variant="outlined" component={Link} to="/woman"><span className={buttonLabel}>Zobacz więcej</span><ArrowForwardIcon/></Button>
             </div>
             <div className="startPage-imageWrapper startPage-imageMan">
                 <h2>MĘŻCZYZNA</h2>
-                <Button className={button} color="primary" variant="outlined" component={Link} to="/man">Zobacz więcej<ArrowForwardIcon/></Button>
+                <Button className={button} color="primary" variant="outlined" component={Link} to="/man"><span className={buttonLabel}>Zobacz więcej</span><ArrowForwardIcon/></Button>
             </div>
             <div className="startPage-imageWrapper startPage-imageKids">
                 <h2>DZIECKO</h2>
-                <Button className={button} color="primary" variant="outlined" component={Link} to="/kid">Zobacz więcej<ArrowForwardIcon/></Button>
+                <Button className={button} color="primary" variant="outlined" component={Link} to="/kid"><span className={buttonLabel}>Zobacz więcej</span><ArrowForwardIcon/></Button>
             </div>
         </div>
     );
