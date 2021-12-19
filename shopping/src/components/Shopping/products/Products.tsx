@@ -14,6 +14,13 @@ import { ProductsArrayModel } from "../../../models/ProductsArrayModel";
 const useStyles = makeStyles(() => ({
     hidden: {
       display: "none"
+    },
+    showMoreButton: {
+            border: '1.5px solid black',
+            borderRadius: '5px',
+            color: 'black',
+            zIndex: 2,
+            alignSelf: 'center'
     }
 }));
 
@@ -23,7 +30,7 @@ const Products = ({productsArray, mainHeader}:{productsArray:Array<ProductModel>
     const productsPerPage: number = 20;
     const tags: Array<string> = (["wzorzysty podkoszulek", "jeansy czarne", "hawajska koszula", "elegancka koszula", "krótkie spodenki"]);
 
-    const {hidden} = useStyles();
+    const {hidden, showMoreButton} = useStyles();
 
     const [clothes, setClothes] = useState<Array<ProductModel>>(productsArray);
     const [productsToDisplay, setProductsToDisplay] = useState<Array<ProductModel>>([]);
@@ -62,13 +69,8 @@ const Products = ({productsArray, mainHeader}:{productsArray:Array<ProductModel>
             />
             <div className="products-container">
                 <h2 className="products-mainHeader">{mainHeader}</h2>
-                <div className="products-chips">
-                    <Chip size="medium" label="Podkoszulki" color="primary"/>
-                    <Chip size="medium" label="Koszule" color="primary"/>
-                    <Chip size="medium" label="Spodnie" color="primary"/>
-                </div>
                 <ProductsList productsArray={productsToDisplay}/>
-                <Button className={!isShowMoreButtonVisible ? hidden : ""} onClick={handleShowMoreProducts}>WCZYTAJ WIĘCEJ PRODUKTÓW</Button>
+                <Button className={!isShowMoreButtonVisible ? hidden : showMoreButton} onClick={handleShowMoreProducts} variant='outlined'>WCZYTAJ WIĘCEJ PRODUKTÓW</Button>
             </div>
         </div>
     )
