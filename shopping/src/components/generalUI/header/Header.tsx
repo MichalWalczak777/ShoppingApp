@@ -19,12 +19,22 @@ const useStyles = makeStyles(() => ({
     toolbar: {
       display: "flex",
       justifyContent: "space-between",
+    },
+    appbar: {
+        backgroundColor: "#fff"
+    },
+    icon: {
+        color: '#000'
+    },
+    logo: {
+        color: '#000',
+        fontFamily: 'Orbitron'
     }
 }));
 
 const Header = () => {
 
-    const {toolbar} = useStyles();
+    const {appbar, toolbar, icon, logo} = useStyles();
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
     const handleMenu = () => {
@@ -34,7 +44,7 @@ const Header = () => {
     const hamburgerMenu = () => {
         return (
             <IconButton onClick={handleMenu}>
-              <MenuIcon/>
+              <MenuIcon className={icon}/>
             </IconButton>
         )
     }
@@ -44,16 +54,16 @@ const Header = () => {
     const navigationMenu = () => {
         return (
             <Toolbar className={toolbar}>
-                <div>{hamburgerMenu()}YOURSHOP</div>
+                <div className={logo}>{hamburgerMenu()}<Link to = '/'> YOURSHOP </Link></div>
                 <div className="navigationButtons">
-                    {navigationIcons.map(menuElement => <Link to={menuElement.link} key={menuElement.name}><IconButton>{menuElement.icon}</IconButton></Link>)}
+                    {navigationIcons.map(menuElement => <Link to={menuElement.link} key={menuElement.name}><IconButton className={icon}>{menuElement.icon}</IconButton></Link>)}
                 </div>
             </Toolbar>)
     }
 
     return (
-        <header className="header-appHeader">
-            <AppBar>{navigationMenu()}</AppBar>
+        <header>
+            <AppBar className={appbar}>{navigationMenu()}</AppBar>
             <Drawer anchor="left" open={isMenuOpen} onClose={() => setIsMenuOpen(false)}>
                 <p className="header-drawerMenuClose"><IconButton onClick={handleMenu}><CloseIcon/></IconButton></p>
                 <ul className="header-drawerMenu">
