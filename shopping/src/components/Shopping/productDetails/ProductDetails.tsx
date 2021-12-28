@@ -25,31 +25,35 @@ const useStyles = makeStyles(() => ({
     productDetailsSelectSize: {
         height: "100%",
         width: "48%"
+    },
+    productName: {
+        textTransform: 'capitalize'
     }
 }));
 
 const ProductDetails= () => {
 
+    const {productDetailsButton, productDetailsSelectSize, productName} = useStyles();
     const paramId:{id:string} = useParams();
     const id:string = paramId.id;
 
-    let defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 74.99, id: 'w1'};
+    let product: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 74.99, id: 'w1'};
 
     if (id.charAt(0)==='w'){
-        defaultShirt = womensProducts.filter(item => item.id === id)[0]
+        product = womensProducts.filter(item => item.id === id)[0]
     }
     else if (id.charAt(0)==='m'){
-        defaultShirt = mensProducts.filter(item => item.id === id)[0]
+        product = mensProducts.filter(item => item.id === id)[0]
     }
     else if (id.charAt(0)==='k'){
-        defaultShirt = kidsProducts.filter(item => item.id === id)[0]
+        product = kidsProducts.filter(item => item.id === id)[0]
     }
 
     const sizes: Array<string> = ["XS", "S", "M", "L", "XL"];
     const dispatch = useDispatch();
 
-    const [size, setSize] = React.useState<string>(" ");
-    const [sizedProduct, setSizedProduct] = React.useState<SizedProductModel>({...defaultShirt, size: " ", quantity: 1});
+    const [size, setSize] = React.useState<string>("M");
+    const [sizedProduct, setSizedProduct] = React.useState<SizedProductModel>({...product, size: " ", quantity: 1});
 
     useEffect(()=> {
         const productToAdd = {
@@ -70,18 +74,16 @@ const ProductDetails= () => {
         dispatch(addToBasket(sizedProduct, sizedProduct.name + sizedProduct.size));
     }
 
-    const {productDetailsButton, productDetailsSelectSize} = useStyles();
-
     return (
         <div className="productDetails">
             <div className="productDetails-mainContent">
-                <img className="productDetails-image" src={defaultShirt.image}/>         
+                <img className="productDetails-image" src={product.image}/>         
                 <p className="productDetails-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam recusandae nihil neque tempora laboriosam, at praesentium porro eius aspernatur enim delectus earum provident blanditiis facilis numquam sunt nulla. Tempora, debitis?</p>
             </div>
             <div className="productDetails-bottomMenu">
                 <div className="productDetails-bottomMenuRow">
-                    <p>{defaultShirt.name}</p>
-                    <p>{defaultShirt.price}</p>
+                    <p className = {productName}>{product.name}</p>
+                    <p>{product.price}</p>
                 </div>
                 <div className="productDetails-bottomMenuRow">
                 <FormControl className={productDetailsSelectSize}>

@@ -19,7 +19,7 @@ const store = createStore(rootReducer, loadFromLocalStorage(), composeEnhancers(
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#2E4A72"
+      main: "#0d8237"
                },
     secondary: {
       main: "#F0F0F1"
