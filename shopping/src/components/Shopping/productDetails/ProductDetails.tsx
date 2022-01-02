@@ -37,7 +37,7 @@ const ProductDetails= () => {
     const paramId:{id:string} = useParams();
     const id:string = paramId.id;
 
-    let product: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 74.99, id: 'w1'};
+    let product: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, category:'podkoszulki', price: 74.99, id: 'w1'};
 
     if (id.charAt(0)==='w'){
         product = womensProducts.filter(item => item.id === id)[0]

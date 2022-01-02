@@ -26,21 +26,20 @@ const useStyles = makeStyles(() => ({
 
 const Products = ({productsArray, mainHeader}:{productsArray:Array<ProductModel>, mainHeader:string}) => {
 
-    const defaultShirt: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, price: 74.99, id:'w1'};
     const productsPerPage: number = 20;
-    const tags: Array<string> = (["wzorzysty podkoszulek", "jeansy czarne", "hawajska koszula", "elegancka koszula", "krótkie spodenki"]);
 
     const {hidden, showMoreButton} = useStyles();
 
     const [clothes, setClothes] = useState<Array<ProductModel>>(productsArray);
     const [productsToDisplay, setProductsToDisplay] = useState<Array<ProductModel>>([]);
     const [counter, setCounter] = useState<number>(0);
-    const [isShowMoreButtonVisible, setIsShowMoreButtonVisible] = useState<boolean>(true);
+    const [isShowMoreButtonVisible, setIsShowMoreButtonVisible] = useState<boolean>(true); 
+    const [filterCategory, setFilterCategory] = useState<string>('');
 
     useEffect(() => {
         setIsShowMoreButtonVisible(true)
         handleShowMoreProducts();
-      }, [clothes]);
+      }, [clothes, filterCategory]);
 
 
     const handleShowMoreProducts = () => {
@@ -50,20 +49,33 @@ const Products = ({productsArray, mainHeader}:{productsArray:Array<ProductModel>
 
     const CalculateProductsToDisplay = (counter: number) => {
         let newProducts: Array<ProductModel> = [];
+        let filteredClothes: Array<ProductModel> = clothes;
+        if (filterCategory){
+            filteredClothes = clothes.filter(product => product.category === filterCategory);
+        }
         const firstProductIndex = counter*productsPerPage;
         const lastProductIndex = firstProductIndex+productsPerPage;
         for(let i = firstProductIndex; i < lastProductIndex; i++){
-            clothes[i] && newProducts.push(clothes[i]);
+            filteredClothes[i] && newProducts.push(filteredClothes[i]);
         }
-        ([...productsToDisplay, ...newProducts].length === clothes.length) && setIsShowMoreButtonVisible(false);
+        ([...productsToDisplay, ...newProducts].length === filteredClothes.length) && setIsShowMoreButtonVisible(false);
         setProductsToDisplay([...productsToDisplay, ...newProducts]);
     }
+
+      const handleChange = (event: { target: { value: string; }; } | any) => {
+        window.alert(event.target.value as string);
+        setFilterCategory(event.target.value as string);
+        window.alert(filterCategory);
+      };
 
     return(
         <div className="products">
             <ScrollToTop showBelow={1000}/>
             <Autocomplete
-            options={tags}
+            freeSolo
+            disableClearable
+            onChange = {handleChange}
+            options={productsToDisplay.map(product => product.category).filter((product, pos, self) => self.indexOf(product) === pos)}
             getOptionLabel={(option) => option}
             renderInput={(params) => <TextField {...params} label="Szukaj" variant="outlined" />}
             />
