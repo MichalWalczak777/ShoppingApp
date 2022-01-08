@@ -62,20 +62,27 @@ const Products = ({productsArray, mainHeader}:{productsArray:Array<ProductModel>
         setProductsToDisplay([...productsToDisplay, ...newProducts]);
     }
 
-      const handleChange = (event: { target: { value: string; }; } | any) => {
-        window.alert(event.target.value as string);
-        setFilterCategory(event.target.value as string);
-        window.alert(filterCategory);
-      };
+      const handleInputChange = (event: any, value: string) => {
+        setFilterCategory(value);
+        setCounter(0);
+        setProductsToDisplay([]);
+      }
+
+      const filterAutocompleteOptions = (options: Array<string>, state: string) => {
+        return options.filter(option => option.includes(state));
+      }
+
+      const generateOptionCategories = () => clothes.map(product => product.category).filter((product, pos, self) => self.indexOf(product) === pos);
+
 
     return(
         <div className="products">
             <ScrollToTop showBelow={1000}/>
             <Autocomplete
-            freeSolo
+            filterOptions = {() => filterAutocompleteOptions(generateOptionCategories(), filterCategory)}
             disableClearable
-            onChange = {handleChange}
-            options={productsToDisplay.map(product => product.category).filter((product, pos, self) => self.indexOf(product) === pos)}
+            onInputChange = {handleInputChange}
+            options={generateOptionCategories()}
             getOptionLabel={(option) => option}
             renderInput={(params) => <TextField {...params} label="Szukaj" variant="outlined" />}
             />
