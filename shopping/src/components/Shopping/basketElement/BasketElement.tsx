@@ -4,6 +4,7 @@ import { FormControl, InputLabel, Select, MenuItem, IconButton } from "@material
 import { SizedProductModel } from "../../../models/SizedProductModel";
 import { useDispatch } from "react-redux";
 import { changeBasketItem, removeFromBasket } from "../../../redux/actions";
+import { changeBasketQuantity } from "../../../redux/actions/basketQuantity";
 
 const BasketElement = ({sizedProduct}: {sizedProduct:SizedProductModel}) => {
 
@@ -19,10 +20,13 @@ const BasketElement = ({sizedProduct}: {sizedProduct:SizedProductModel}) => {
 
 
     const handleClick = (e: React.MouseEvent) => {
+        dispatch(changeBasketQuantity(-sizedProduct.quantity));
         dispatch(removeFromBasket(productKey));
     }
 
     const handleChange = (e: React.ChangeEvent<{ value: unknown }>) => {
+        const difference = e.target.value as number - sizedProduct.quantity;
+        dispatch(changeBasketQuantity(difference));
         dispatch(changeBasketItem(sizedProduct, e.target.value as number, productKey));
       };
 

@@ -16,6 +16,7 @@ import { womensProducts } from '../../../woman';
 import { mensProducts } from '../../../man';
 import { kidsProducts } from '../../../kid';
 import { useParams } from 'react-router-dom';
+import { changeBasketQuantity } from "../../../redux/actions/basketQuantity";
 
 const useStyles = makeStyles(() => ({
     productDetailsButton: {
@@ -69,6 +70,7 @@ const ProductDetails= () => {
       };
 
     const handleClick = () => {
+        dispatch(changeBasketQuantity(sizedProduct.quantity));
         dispatch(addToBasket(sizedProduct, sizedProduct.name + sizedProduct.size));
     }
 

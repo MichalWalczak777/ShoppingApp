@@ -5,7 +5,8 @@ import { AppBar,
     IconButton,
     Menu, 
     Drawer,
-    Button} from "@material-ui/core";
+    Button,
+    Badge} from "@material-ui/core";
 
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -13,6 +14,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import CloseIcon from '@material-ui/icons/Close';
 import { Link } from "react-router-dom";
+
+import { useSelector } from "react-redux";
 
 
 const useStyles = makeStyles(() => ({
@@ -34,6 +37,8 @@ const useStyles = makeStyles(() => ({
 
 const Header = () => {
 
+    const basketQuantityState = useSelector((state: any) => state.basketQuantity);
+
     const {appbar, toolbar, icon, logo} = useStyles();
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
@@ -48,7 +53,7 @@ const Header = () => {
             </IconButton>
         )
     }
-    const navigationIcons = [{icon: <AccountCircleIcon/>, name: "account", link: "/accountDetails"}, {icon: <SearchIcon/>, name: "search",  link: "/"}, {icon: <ShoppingCartIcon/>, name: "basket",  link: "/basket"}];
+    const navigationIcons = [{icon: <AccountCircleIcon/>, name: "account", link: "/accountDetails"}, {icon: <SearchIcon/>, name: "search",  link: "/"}, {icon: <Badge badgeContent={basketQuantityState} color="primary"><ShoppingCartIcon/></Badge>, name: "basket",  link: "/basket"}];
     const drawerMenuOptions = [{name: "ONA", link: "/woman"}, {name: "ON", link: "/man"}, {name: "DZIECKO", link: "/kid"}]
 
     const navigationMenu = () => {
