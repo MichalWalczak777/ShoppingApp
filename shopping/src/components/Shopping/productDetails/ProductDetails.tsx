@@ -37,33 +37,31 @@ const ProductDetails= () => {
     const paramId:{id:string} = useParams();
     const id:string = paramId.id;
 
-    let product: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, category:'podkoszulki', price: 74.99, id: 'w1'};
 
-    if (id.charAt(0)==='w'){
-        product = womensProducts.filter(item => item.id === id)[0]
-    }
-    else if (id.charAt(0)==='m'){
-        product = mensProducts.filter(item => item.id === id)[0]
-    }
-    else if (id.charAt(0)==='k'){
-        product = kidsProducts.filter(item => item.id === id)[0]
+    const setChosenProduct = () =>{
+        let product: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, category:'podkoszulki', price: 74.99, id: 'w1'};
+        if (id.charAt(0)==='w'){
+            product = womensProducts.filter(item => item.id === id)[0]
+        }
+        else if (id.charAt(0)==='m'){
+            product = mensProducts.filter(item => item.id === id)[0]
+        }
+        else if (id.charAt(0)==='k'){
+            product = kidsProducts.filter(item => item.id === id)[0]
+        }
+        setSizedProduct({...product, size, quantity: 1});
+        return product;
     }
 
     const sizes: Array<string> = ["XS", "S", "M", "L", "XL"];
     const dispatch = useDispatch();
 
+    const [product, setProduct] = React.useState<ProductModel>({name: "podkoszulek pulp fiction", image: pulpFictionShirt, category:'podkoszulki', price: 74.99, id: 'w1'});
     const [size, setSize] = React.useState<string>("M");
-    const [sizedProduct, setSizedProduct] = React.useState<SizedProductModel>({...product, size: " ", quantity: 1});
+    const [sizedProduct, setSizedProduct] = React.useState<SizedProductModel>({name: "podkoszulek pulp fiction", image: pulpFictionShirt, category:'podkoszulki', price: 74.99, id: 'w1', size: "L", quantity: 1});
 
     useEffect(()=> {
-        const productToAdd = {
-            name: "podkoszulek pulp fiction",
-            image: pulpFictionShirt,
-            price: 74.99,
-            size: size,
-            quantity: 1
-        }
-        setSizedProduct(productToAdd);
+        setProduct(setChosenProduct());
     },[size])
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
