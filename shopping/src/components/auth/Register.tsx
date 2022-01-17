@@ -2,11 +2,11 @@ import { Button, TextField } from "@material-ui/core";
 import firebase from "../../firebase";
 import React from "react";
 import {useState, useRef} from "react";
-import useStyles from "./authStyles";
+import authStyles from "./authStyles";
 
 const Register = () => {
 
-    const {authInput, authForm} = useStyles();
+    const {authInput, authForm} = authStyles();
     const [fields, setFields] = useState(
         {
             email: "",
@@ -34,9 +34,9 @@ const Register = () => {
         <div className="login container">
             <form className={authForm} onSubmit={handleSubmit}>
                     <TextField className={authInput} type="email" name="email" label="Email" variant="outlined" onChange={handleChange} />
-                    <TextField className={authInput} type="password" name="password" label="Password" variant="outlined" onChange={handleChange} />
-                    <TextField className={authInput} type="password" name="passwordRepeated" label="Repeat password" variant="outlined" onChange={handleChange} />
-                    <Button onClick={handleSubmit}>ZAŁÓŻ KONTO</Button>
+                    <TextField className={authInput} type="password" name="password" label="Hasło" variant="outlined" onChange={handleChange} />
+                    <TextField className={authInput} type="password" name="passwordRepeated" label="Powtórz hasło" variant="outlined" onChange={handleChange} />
+                    <Button variant = 'contained' color= 'primary' onClick={handleSubmit}>ZAŁÓŻ KONTO</Button>
             </form>
         </div>
 

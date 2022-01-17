@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles(() => ({
+const authStyles = makeStyles(() => ({
     authInput: {
       width: "100%",
       marginBottom:"20px"
@@ -10,7 +10,10 @@ const useStyles = makeStyles(() => ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "center"
+    },
+    authPanel: {
+      marginTop: '56px'
     }
 }));
 
-export default useStyles;
+export default authStyles;

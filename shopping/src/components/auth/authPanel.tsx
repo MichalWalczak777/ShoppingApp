@@ -8,6 +8,7 @@ import Register from './Register';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/reducers';
 import { Redirect } from 'react-router-dom';
+import authStyles from './authStyles';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -27,6 +28,7 @@ function TabPanel(props: TabPanelProps) {
 
 const AuthPanel = () => {
 
+  const {authPanel} = authStyles();
   const isAuthenticated = Boolean(useSelector((state: RootState) => state.auth));
   const [value, setValue] = React.useState(0);
   
@@ -36,8 +38,8 @@ const AuthPanel = () => {
 
   return(
     isAuthenticated ?  <Redirect to={"/accountDetails"}/> : (
-    <div>
-      <AppBar position="static">
+    <div className = {authPanel}>
+      <AppBar elevation = {0} className = 'authPanel-appBar' color='secondary' position="static">
           <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" variant="fullWidth" indicatorColor="secondary">
               <Tab label="ZALOGUJ SIĘ" />
               <Tab label="ZAŁÓŻ KONTO" />
@@ -52,31 +54,6 @@ const AuthPanel = () => {
     </div>
     )
   )
-
-
-//   if (isAuthenticated) {
-//     return (
-//       <Redirect to={"/accountDetails"} />
-//     )
-//   }
-//   else{
-//     return (
-//       <div>
-//       <AppBar position="static">
-//           <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" variant="fullWidth" indicatorColor="secondary">
-//               <Tab label="ZALOGUJ SIĘ" />
-//               <Tab label="ZAŁÓŻ KONTO" />
-//           </Tabs>
-//       </AppBar>
-//       <TabPanel value={value} index={0}>
-//           <Login/>
-//       </TabPanel>
-//       <TabPanel value={value} index={1}>
-//           <Register/>
-//       </TabPanel>
-//   </div>
-//     )
-// }
   }
   
 
