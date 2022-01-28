@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import pulpFictionShirt from "../../../assets/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
 import { ProductModel } from "../../../models/ProductModel";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToBasket } from "../../../redux/actions"
 import { Select,
     MenuItem,
@@ -17,6 +17,7 @@ import { mensProducts } from '../../../man';
 import { kidsProducts } from '../../../kid';
 import { useParams } from 'react-router-dom';
 import { changeBasketQuantity } from "../../../redux/actions/basketQuantity";
+import { RootState } from "../../../redux/reducers";
 
 const useStyles = makeStyles(() => ({
     productDetailsButton: {
@@ -38,7 +39,8 @@ const ProductDetails= () => {
     const paramId:{id:string} = useParams();
     const id:string = paramId.id;
 
-
+    const basketGlobalState = useSelector((state: RootState) => state.basket);
+    
     const setChosenProduct = () =>{
         let product: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, category:'podkoszulki', price: 74.99, id: 'w1'};
         if (id.charAt(0)==='w'){
@@ -70,8 +72,10 @@ const ProductDetails= () => {
       };
 
     const handleClick = () => {
-        dispatch(changeBasketQuantity(sizedProduct.quantity));
-        dispatch(addToBasket(sizedProduct, sizedProduct.name + sizedProduct.size));
+        if (!(basketGlobalState.hasOwnProperty(sizedProduct.name+sizedProduct.size) && basketGlobalState[sizedProduct.name+sizedProduct.size].quantity >= 10)){
+            dispatch(changeBasketQuantity(sizedProduct.quantity));
+            dispatch(addToBasket(sizedProduct, sizedProduct.name + sizedProduct.size));
+        }
     }
 
     return (
