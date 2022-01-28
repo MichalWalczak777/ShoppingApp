@@ -34,23 +34,24 @@ const App = () => {
 
 
   return (
-    <>
-    <HashRouter>
-      <Header/>  
-      <Switch>
-          <Route exact path="/" component={StartPage}/>
-          {/* <Route exact path="/woman" component={Products}/> */}
-          <Route key="womens-clothing" exact path="/woman" render={(props) => <Products {...props} productsArray = {womensProducts} mainHeader="Odzież damska" />} />
-          <Route key="mens-clothing" exact path="/man" render={(props) => <Products {...props} productsArray = {mensProducts} mainHeader="Odzież męska" />} />
-          <Route key="kids-clothing" exact path="/kid" render={(props) => <Products {...props} productsArray = {kidsProducts} mainHeader="Odzież dziecięca" />} />
-          <Route exact path="/basket" component={ShoppingBasket}/>
-          <Route exact path="/product/:id" component={ProductDetails}/>
-          <Route exact path="/authPanel" component={AuthPanel}/>
-          <PrivateRoute exact path="/accountDetails" component={AccountDetails}/>
-      </Switch>
-      <Footer/>                                                                                                                                                                                                              
-    </HashRouter>
-    </> 
+    <div className="app">
+      <HashRouter>
+          <Header/>  
+          <Switch>
+            <div className='main-content'>
+              <Route exact path="/" component={StartPage}/>
+              <Route key="womens-clothing" exact path="/woman" render={(props) => <Products {...props} productsArray = {womensProducts} mainHeader="Odzież damska" />} />
+              <Route key="mens-clothing" exact path="/man" render={(props) => <Products {...props} productsArray = {mensProducts} mainHeader="Odzież męska" />} />
+              <Route key="kids-clothing" exact path="/kid" render={(props) => <Products {...props} productsArray = {kidsProducts} mainHeader="Odzież dziecięca" />} />
+              <Route exact path="/basket" component={ShoppingBasket}/>
+              <Route exact path="/product/:id" component={ProductDetails}/>
+              <Route exact path="/authPanel" component={AuthPanel}/>
+              <PrivateRoute exact path="/accountDetails" component={AccountDetails}/>
+            </div>
+          </Switch>
+          <Footer/>                                                                                                                                                                                                              
+      </HashRouter>
+    </div> 
     );
 }
 
