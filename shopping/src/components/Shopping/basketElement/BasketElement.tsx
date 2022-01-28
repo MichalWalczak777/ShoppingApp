@@ -5,6 +5,7 @@ import { SizedProductModel } from "../../../models/SizedProductModel";
 import { useDispatch } from "react-redux";
 import { changeBasketItem, removeFromBasket } from "../../../redux/actions";
 import { changeBasketQuantity } from "../../../redux/actions/basketQuantity";
+import { Link } from "react-router-dom";
 
 const BasketElement = ({sizedProduct}: {sizedProduct:SizedProductModel}) => {
 
@@ -40,8 +41,12 @@ const BasketElement = ({sizedProduct}: {sizedProduct:SizedProductModel}) => {
 
     return (
         <div className="basketElement">
-            <img className="basketElement-image"src={sizedProduct.image} alt=""/>
-            <div className="basketElement-data">
+            <div className="basketElement-imageWrapper">
+                <Link to= {"/product" + "/" + sizedProduct.id}>
+                    <img className="basketElement-image" src={sizedProduct.image} alt=""/>
+                </Link>
+            </div>
+            <div className="basketElement-dataWrapper">
                 <div className="basketElement-iconBox">
                     <IconButton onClick={handleClick}>
                         <DeleteIcon/>

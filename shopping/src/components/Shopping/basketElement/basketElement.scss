@@ -2,12 +2,16 @@
     display: flex;
 }
 
-.basketElement-image{
-    width: 30%;
+.basketElement-imageWrapper{
+    width: 60%;
     margin: 10px;
 }
 
-.basketElement-data{
+.basketElement-image{
+    width: 100%;
+}
+
+.basketElement-dataWrapper{
     font-family: Roboto;
     margin: 10px;
     width: 100%;
