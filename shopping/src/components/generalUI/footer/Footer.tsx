@@ -1,5 +1,5 @@
 import { AccordionSummary, AccordionDetails, Accordion, Typography, makeStyles } from "@material-ui/core";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
@@ -49,15 +49,28 @@ const useStyles = makeStyles(() => ({
 
 const Footer = () => {
 
+    const [isExpanded, setIsExpanded] = useState<Array<boolean>>([false, false, false]);
+    const location = useLocation();
     const {footer, footerIcon, accordion, listElement, accordionDetails, accordionSummary, arrow} = useStyles();
     const footerData = [{summary: "Kontakt", details:[" tel. (12) 333 23 11", "sklep@bestshopping.com", <a>formularz kontaktowy</a>]},
                         {summary: "Informacje", details: ["O nas", "Nasze salony", "Polityka prywatności", "Pracuj w Best Shopping!"]},
                         {summary: "Obsługa klienta", details: ["Dostawa", "Formy płatności", "Czas realizacji zamównienia", "Regulamin", "Zwroty i reklamacje"]}];
 
+
+    useEffect(() => {
+        setIsExpanded([false, false, false]);
+    }, [location]);
+
+    const handleChange = (index: number) => (event: React.ChangeEvent<{}>, expanded: boolean) => {
+        let expandedArray = [...isExpanded];
+        expandedArray[index] = expanded;
+        setIsExpanded(expandedArray);
+    }
+
     return (
         <footer className = {footer}>
-            {footerData?.map(data => 
-                    <Accordion className={accordion} key={"accordion" + data.summary}>
+            {footerData?.map((data, index) => 
+                    <Accordion expanded = {isExpanded[index]} className={accordion} onChange={handleChange(index)} key={"accordion" + data.summary}>
                         <AccordionSummary className={accordionSummary}>
                             {data.summary}
                             <ExpandMoreIcon className={arrow}/>
