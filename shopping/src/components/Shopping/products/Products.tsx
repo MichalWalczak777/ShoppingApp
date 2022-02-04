@@ -7,9 +7,11 @@ import ScrollToTop from "../../reusableComponents/ScrollToTop";
 import {Button,
         Chip,
         TextField,
-        makeStyles } from '@material-ui/core';
-import "../../../woman";
+        makeStyles, 
+        Select} from '@material-ui/core';
 import { ProductsArrayModel } from "../../../models/ProductsArrayModel";
+import * as genderCategories from './../../../categories/clothingGenderCategories';
+import { mensProducts, womensProducts, kidsProducts } from "../../../productsData";
 
 const useStyles = makeStyles(() => ({
     hidden: {
@@ -24,22 +26,68 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const Products = ({productsArray, mainHeader}:{productsArray:Array<ProductModel>, mainHeader:string}) => {
+
+const Products = ({defaultCategory}:{defaultCategory:string}) => {
+
+
+  const filterByGenderCategory = (category:string): Array<ProductModel> => {
+    switch (category){
+      case genderCategories._WOMAN:
+        return womensProducts;
+      case genderCategories._MAN:
+        return mensProducts;
+      case genderCategories._KID:
+        return kidsProducts;
+      case genderCategories._EVERYTHING:
+        return [...womensProducts, ...mensProducts, ...kidsProducts];
+      default:
+        return [...womensProducts, ...mensProducts, ...kidsProducts];
+    }
+  }
 
     const productsPerPage: number = 20;
 
     const {hidden, showMoreButton} = useStyles();
 
-    const [clothes, setClothes] = useState<Array<ProductModel>>(productsArray);
+    const [genderCategory, setGenderCategory] = useState<string>(defaultCategory);
+    const [clothes, setClothes] = useState<Array<ProductModel>> (() => filterByGenderCategory(defaultCategory));
     const [productsToDisplay, setProductsToDisplay] = useState<Array<ProductModel>>([]);
     const [counter, setCounter] = useState<number>(0);
     const [isShowMoreButtonVisible, setIsShowMoreButtonVisible] = useState<boolean>(true); 
-    const [filterCategory, setFilterCategory] = useState<string>('');
+    const [itemCategoryFilter, setItemCategoryFilter] = useState<string>('');
 
     useEffect(() => {
-        setIsShowMoreButtonVisible(true)
-        handleShowMoreProducts();
-      }, [clothes, filterCategory]);
+      setIsShowMoreButtonVisible(true);
+      handleShowMoreProducts();
+    }, [clothes, itemCategoryFilter]);
+
+    useEffect(() => {
+      setClothes(filterByGenderCategory(genderCategory));
+    },[genderCategory])
+
+
+
+    const CalculateProductsToDisplay = (counter: number) => {
+      let newProducts: Array<ProductModel> = [];
+      let filteredClothes: Array<ProductModel> = clothes;
+      if (itemCategoryFilter){
+          filteredClothes = clothes.filter(product => product.category === itemCategoryFilter);
+      }
+      const firstProductIndex = counter*productsPerPage;
+      const lastProductIndex = firstProductIndex+productsPerPage;
+      for(let i = firstProductIndex; i < lastProductIndex; i++){
+          filteredClothes[i] && newProducts.push(filteredClothes[i]);
+      }
+      ([...productsToDisplay, ...newProducts].length === filteredClothes.length) && setIsShowMoreButtonVisible(false);
+      setProductsToDisplay([...productsToDisplay, ...newProducts]);
+  }
+
+    const filterAutocompleteOptions = (options: Array<string>, state: string) => {
+      return options.filter(option => option.includes(state));
+    }
+
+    const generateOptionCategories = () => clothes.map(product => product.category).filter((product, pos, self) => self.indexOf(product) === pos);
+
 
 
     const handleShowMoreProducts = () => {
@@ -47,47 +95,43 @@ const Products = ({productsArray, mainHeader}:{productsArray:Array<ProductModel>
         setCounter((prev) => prev + 1);
     }
 
-    const CalculateProductsToDisplay = (counter: number) => {
-        let newProducts: Array<ProductModel> = [];
-        let filteredClothes: Array<ProductModel> = clothes;
-        if (filterCategory){
-            filteredClothes = clothes.filter(product => product.category === filterCategory);
-        }
-        const firstProductIndex = counter*productsPerPage;
-        const lastProductIndex = firstProductIndex+productsPerPage;
-        for(let i = firstProductIndex; i < lastProductIndex; i++){
-            filteredClothes[i] && newProducts.push(filteredClothes[i]);
-        }
-        ([...productsToDisplay, ...newProducts].length === filteredClothes.length) && setIsShowMoreButtonVisible(false);
-        setProductsToDisplay([...productsToDisplay, ...newProducts]);
+    const handleAutocompleteChange = (event: any, value: string) => {
+      setItemCategoryFilter(value);
+      setCounter(0);
+      setProductsToDisplay([]);
     }
-
-      const handleInputChange = (event: any, value: string) => {
-        setFilterCategory(value);
-        setCounter(0);
-        setProductsToDisplay([]);
-      }
-
-      const filterAutocompleteOptions = (options: Array<string>, state: string) => {
-        return options.filter(option => option.includes(state));
-      }
-
-      const generateOptionCategories = () => clothes.map(product => product.category).filter((product, pos, self) => self.indexOf(product) === pos);
+  
+    const handleGenderCategoryChange = (event: any, value: unknown) => {
+      const newGenderCategory = value as string;
+      console.log('nowa kategoria ' + JSON.stringify(newGenderCategory))
+      setGenderCategory(newGenderCategory);
+    }
 
 
     return(
         <div className="products">
             <ScrollToTop showBelow={1000}/>
             <Autocomplete
-            filterOptions = {() => filterAutocompleteOptions(generateOptionCategories(), filterCategory)}
-            disableClearable
-            onInputChange = {handleInputChange}
-            options={generateOptionCategories()}
-            getOptionLabel={(option) => option}
-            renderInput={(params) => <TextField {...params} label="Szukaj" variant="outlined" />}
+              filterOptions = {() => filterAutocompleteOptions(generateOptionCategories(), itemCategoryFilter)}
+              disableClearable
+              onInputChange = {handleAutocompleteChange}
+              options={generateOptionCategories()}
+              getOptionLabel={(option) => option}
+              renderInput={(params) => <TextField {...params} label="Szukaj" variant="outlined" />}
             />
+            <Select
+            native
+              variant = 'standard'
+              value={genderCategory}
+              onChange={handleGenderCategoryChange}
+              label="Kategoria"
+            >
+              <option value={genderCategories._WOMAN}>KOBIETA</option>
+              <option value={genderCategories._MAN}>MĘŻCZYZNA</option>
+              <option value={genderCategories._KID}>DZIECKO</option>
+              <option value={genderCategories._EVERYTHING}>WSZYSTKO</option>
+            </Select>
             <div className="products-container">
-                <h2 className="products-mainHeader">{mainHeader}</h2>
                 <ProductsList productsArray={productsToDisplay}/>
                 <Button className={!isShowMoreButtonVisible ? hidden : showMoreButton} onClick={handleShowMoreProducts} variant='outlined'>WCZYTAJ WIĘCEJ PRODUKTÓW</Button>
             </div>
