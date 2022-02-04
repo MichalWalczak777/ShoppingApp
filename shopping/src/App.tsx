@@ -17,12 +17,7 @@ import firebase from "./firebase";
 import { login } from "./redux/actions/auth";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import AccountDetails from "./components/auth/accountDetails/AccountDetails";
-import { womensProducts } from "./woman";
-import { kidsProducts } from "./kid";
-import { mensProducts } from "./man";
-
-
-
+import * as genderCategories from './categories/clothingGenderCategories';
 
 const App = () => {
 
@@ -40,9 +35,10 @@ const App = () => {
           <Switch>
             <div className='main-content'>
               <Route exact path="/" component={StartPage}/>
-              <Route key="womens-clothing" exact path="/woman" render={(props) => <Products {...props} productsArray = {womensProducts} mainHeader="Odzież damska" />} />
-              <Route key="mens-clothing" exact path="/man" render={(props) => <Products {...props} productsArray = {mensProducts} mainHeader="Odzież męska" />} />
-              <Route key="kids-clothing" exact path="/kid" render={(props) => <Products {...props} productsArray = {kidsProducts} mainHeader="Odzież dziecięca" />} />
+              <Route key="womens-clothing" exact path="/woman" render={(props) => <Products {...props} defaultCategory = {genderCategories._WOMAN} />} />
+              <Route key="mens-clothing" exact path="/man" render={(props) => <Products {...props} defaultCategory = {genderCategories._MAN} />} />
+              <Route key="kids-clothing" exact path="/kid" render={(props) => <Products {...props} defaultCategory = {genderCategories._KID} />} />
+              <Route key="all-clothing" exact path="/all" render={(props) => <Products {...props} defaultCategory = {genderCategories._EVERYTHING} />} />
               <Route exact path="/basket" component={ShoppingBasket}/>
               <Route exact path="/product/:id" component={ProductDetails}/>
               <Route exact path="/authPanel" component={AuthPanel}/>

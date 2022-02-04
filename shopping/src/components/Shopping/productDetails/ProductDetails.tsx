@@ -12,9 +12,7 @@ import { Select,
     InputLabel} from '@material-ui/core';
 import { SizedProductModel } from "../../../models/SizedProductModel";
 
-import { womensProducts } from '../../../woman';
-import { mensProducts } from '../../../man';
-import { kidsProducts } from '../../../kid';
+import { womensProducts, mensProducts, kidsProducts } from '../../../productsData';
 import { useParams } from 'react-router-dom';
 import { changeBasketQuantity } from "../../../redux/actions/basketQuantity";
 import { RootState } from "../../../redux/reducers";
