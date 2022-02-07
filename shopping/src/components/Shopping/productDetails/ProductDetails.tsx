@@ -12,7 +12,7 @@ import { Select,
     InputLabel} from '@material-ui/core';
 import { SizedProductModel } from "../../../models/SizedProductModel";
 
-import { womensProducts, mensProducts, kidsProducts } from '../../../productsData';
+import { mockClothingItems as clothingItems } from '../../../productsData';
 import { useParams } from 'react-router-dom';
 import { changeBasketQuantity } from "../../../redux/actions/basketQuantity";
 import { RootState } from "../../../redux/reducers";
@@ -40,16 +40,7 @@ const ProductDetails= () => {
     const basketGlobalState = useSelector((state: RootState) => state.basket);
     
     const setChosenProduct = () =>{
-        let product: ProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, category:'podkoszulki', price: 74.99, id: 'w1'};
-        if (id.charAt(0)==='w'){
-            product = womensProducts.filter(item => item.id === id)[0]
-        }
-        else if (id.charAt(0)==='m'){
-            product = mensProducts.filter(item => item.id === id)[0]
-        }
-        else if (id.charAt(0)==='k'){
-            product = kidsProducts.filter(item => item.id === id)[0]
-        }
+        const product = clothingItems.filter(item => item.id === id)[0]
         setSizedProduct({...product, size, quantity: 1});
         return product;
     }
@@ -57,9 +48,9 @@ const ProductDetails= () => {
     const sizes: Array<string> = ["XS", "S", "M", "L", "XL"];
     const dispatch = useDispatch();
 
-    const [product, setProduct] = React.useState<ProductModel>({name: "podkoszulek pulp fiction", image: pulpFictionShirt, category:'podkoszulki', price: 74.99, id: 'w1'});
-    const [size, setSize] = React.useState<string>("M");
-    const [sizedProduct, setSizedProduct] = React.useState<SizedProductModel>({name: "podkoszulek pulp fiction", image: pulpFictionShirt, category:'podkoszulki', price: 74.99, id: 'w1', size: "L", quantity: 1});
+    const [product, setProduct] = React.useState<ProductModel>({name: '', image: '', category: '', genderCategory: '', price: 0, id: ''});
+    const [size, setSize] = React.useState<string>("M"); 
+    const [sizedProduct, setSizedProduct] = React.useState<SizedProductModel>({name: '', image: '', category: '', genderCategory: '', price: 0, id: '', size: '', quantity: 0});
 
     useEffect(()=> {
         setProduct(setChosenProduct());
