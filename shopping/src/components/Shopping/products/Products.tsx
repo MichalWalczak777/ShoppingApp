@@ -1,15 +1,12 @@
 import React, {useEffect, useState} from "react";
 import { Autocomplete } from '@material-ui/lab';
 import ProductsList from "../productsList/ProductsList";
-import pulpFictionShirt from "../../../assets/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
 import { ProductModel } from "../../../models/ProductModel";
 import ScrollToTop from "../../reusableComponents/ScrollToTop";
 import {Button,
-        Chip,
         TextField,
         makeStyles, 
         Select} from '@material-ui/core';
-import { ProductsArrayModel } from "../../../models/ProductsArrayModel";
 import * as genderCategories from './../../../categories/clothingGenderCategories';
 import { mockClothingItems as clothingItems } from "../../../productsData";
 
@@ -34,7 +31,6 @@ const Products = ({defaultCategory}:{defaultCategory:string}) => {
 
     const {hidden, showMoreButton} = useStyles();
 
-    const [clothes, setClothes] = useState<Array<ProductModel>> (clothingItems);
     const [productsToDisplay, setProductsToDisplay] = useState<Array<ProductModel>>([]);
     const [counter, setCounter] = useState<number>(0);
     const [isShowMoreButtonVisible, setIsShowMoreButtonVisible] = useState<boolean>(true); 
@@ -42,30 +38,24 @@ const Products = ({defaultCategory}:{defaultCategory:string}) => {
     const [genderCategoryFilter, setGenderCategoryFilter] = useState<string>(defaultCategory);
 
     useEffect(() => {
-      console.log('item category set to: ' + itemCategoryFilter);
       setCounter(0);
     },[genderCategoryFilter, itemCategoryFilter])
 
     useEffect(() => {
       if (counter === 0){
-        console.log('counter set to zero');
         setProductsToDisplay([]);
       }
     }, [counter]);
 
     useEffect(() => {
       if (productsToDisplay.length === 0){
-        console.log('products to display empty')
         setIsShowMoreButtonVisible(true);
         handleShowMoreProducts();
       }
-    }, [JSON.stringify(productsToDisplay)])
+    }, [productsToDisplay])
 
 
-    const applyProductFilters = (clothes: Array<ProductModel>) => {
-      let filteredClothes = clothes;
-      console.log('itemFilter: ' + itemCategoryFilter);
-      console.log('genderFilter: ' + genderCategoryFilter);
+    const applyProductFilters = (filteredClothes: Array<ProductModel>) => {
 
       if (genderCategoryFilter){
         filteredClothes = filteredClothes.filter(product => product.genderCategory === genderCategoryFilter);
@@ -79,23 +69,24 @@ const Products = ({defaultCategory}:{defaultCategory:string}) => {
 
 
     const calculateProductsToDisplay = () => {
-      let newProducts: Array<ProductModel> = [];
-      let filteredClothes: Array<ProductModel> = applyProductFilters(clothes);
-  
+
       const firstProductIndex = counter*productsPerPage;
       const lastProductIndex = firstProductIndex+productsPerPage;
-      for(let i = firstProductIndex; i < lastProductIndex; i++){
-          filteredClothes[i] && newProducts.push(filteredClothes[i]);
+      const allFilteredProducts = applyProductFilters(clothingItems);
+  
+      if (lastProductIndex >= allFilteredProducts.length) {
+        setIsShowMoreButtonVisible(false);
+        if (firstProductIndex >= allFilteredProducts.length) return null;
       }
-      ([...productsToDisplay, ...newProducts].length === filteredClothes.length) && setIsShowMoreButtonVisible(false);
-      setProductsToDisplay([...productsToDisplay, ...newProducts]);
+
+      setProductsToDisplay([...productsToDisplay, ...allFilteredProducts.slice(firstProductIndex, lastProductIndex)]);
   }
 
     const filterAutocompleteOptions = (options: Array<string>, state: string) => {
       return options.filter(option => option.includes(state));
     }
 
-    const generateOptionCategories = () => clothes.map(product => product.category).filter((product, pos, self) => self.indexOf(product) === pos);
+    const generateOptionCategories = () => clothingItems.map(product => product.category).filter((product, pos, self) => self.indexOf(product) === pos);
 
 
 
@@ -105,7 +96,6 @@ const Products = ({defaultCategory}:{defaultCategory:string}) => {
     }
 
     const handleItemCategoryChange = (event: any, value: string) => {
-      console.log('autocomplete value: ' + value);
       setItemCategoryFilter(value);
     }
   
