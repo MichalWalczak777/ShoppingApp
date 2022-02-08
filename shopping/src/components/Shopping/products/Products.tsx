@@ -1,17 +1,14 @@
 import React, {useEffect, useState} from "react";
 import { Autocomplete } from '@material-ui/lab';
 import ProductsList from "../productsList/ProductsList";
-import pulpFictionShirt from "../../../assets/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
 import { ProductModel } from "../../../models/ProductModel";
 import ScrollToTop from "../../reusableComponents/ScrollToTop";
 import {Button,
-        Chip,
         TextField,
         makeStyles, 
         Select} from '@material-ui/core';
-import { ProductsArrayModel } from "../../../models/ProductsArrayModel";
 import * as genderCategories from './../../../categories/clothingGenderCategories';
-import { mensProducts, womensProducts, kidsProducts } from "../../../productsData";
+import { mockClothingItems as clothingItems } from "../../../productsData";
 
 const useStyles = makeStyles(() => ({
     hidden: {
@@ -22,7 +19,7 @@ const useStyles = makeStyles(() => ({
             borderRadius: '5px',
             color: 'black',
             zIndex: 2,
-            alignSelf: 'center'
+            alignSelf: 'center' 
     }
 }));
 
@@ -30,81 +27,80 @@ const useStyles = makeStyles(() => ({
 const Products = ({defaultCategory}:{defaultCategory:string}) => {
 
 
-  const filterByGenderCategory = (category:string): Array<ProductModel> => {
-    switch (category){
-      case genderCategories._WOMAN:
-        return womensProducts;
-      case genderCategories._MAN:
-        return mensProducts;
-      case genderCategories._KID:
-        return kidsProducts;
-      case genderCategories._EVERYTHING:
-        return [...womensProducts, ...mensProducts, ...kidsProducts];
-      default:
-        return [...womensProducts, ...mensProducts, ...kidsProducts];
-    }
-  }
-
     const productsPerPage: number = 20;
 
     const {hidden, showMoreButton} = useStyles();
 
-    const [genderCategory, setGenderCategory] = useState<string>(defaultCategory);
-    const [clothes, setClothes] = useState<Array<ProductModel>> (() => filterByGenderCategory(defaultCategory));
     const [productsToDisplay, setProductsToDisplay] = useState<Array<ProductModel>>([]);
     const [counter, setCounter] = useState<number>(0);
     const [isShowMoreButtonVisible, setIsShowMoreButtonVisible] = useState<boolean>(true); 
     const [itemCategoryFilter, setItemCategoryFilter] = useState<string>('');
+    const [genderCategoryFilter, setGenderCategoryFilter] = useState<string>(defaultCategory);
 
     useEffect(() => {
-      setIsShowMoreButtonVisible(true);
-      handleShowMoreProducts();
-    }, [clothes, itemCategoryFilter]);
+      setCounter(0);
+    },[genderCategoryFilter, itemCategoryFilter])
 
     useEffect(() => {
-      setClothes(filterByGenderCategory(genderCategory));
-    },[genderCategory])
-
-
-
-    const CalculateProductsToDisplay = (counter: number) => {
-      let newProducts: Array<ProductModel> = [];
-      let filteredClothes: Array<ProductModel> = clothes;
-      if (itemCategoryFilter){
-          filteredClothes = clothes.filter(product => product.category === itemCategoryFilter);
+      if (counter === 0){
+        setProductsToDisplay([]);
       }
+    }, [counter]);
+
+    useEffect(() => {
+      if (productsToDisplay.length === 0){
+        setIsShowMoreButtonVisible(true);
+        handleShowMoreProducts();
+      }
+    }, [productsToDisplay])
+
+
+    const applyProductFilters = (filteredClothes: Array<ProductModel>) => {
+
+      if (genderCategoryFilter){
+        filteredClothes = filteredClothes.filter(product => product.genderCategory === genderCategoryFilter);
+      }
+      if (itemCategoryFilter){
+        filteredClothes = filteredClothes.filter(product => product.category === itemCategoryFilter);
+      }
+      return filteredClothes;
+    }
+
+
+
+    const calculateProductsToDisplay = () => {
+
       const firstProductIndex = counter*productsPerPage;
       const lastProductIndex = firstProductIndex+productsPerPage;
-      for(let i = firstProductIndex; i < lastProductIndex; i++){
-          filteredClothes[i] && newProducts.push(filteredClothes[i]);
+      const allFilteredProducts = applyProductFilters(clothingItems);
+  
+      if (lastProductIndex >= allFilteredProducts.length) {
+        setIsShowMoreButtonVisible(false);
+        if (firstProductIndex >= allFilteredProducts.length) return null;
       }
-      ([...productsToDisplay, ...newProducts].length === filteredClothes.length) && setIsShowMoreButtonVisible(false);
-      setProductsToDisplay([...productsToDisplay, ...newProducts]);
+
+      setProductsToDisplay([...productsToDisplay, ...allFilteredProducts.slice(firstProductIndex, lastProductIndex)]);
   }
 
     const filterAutocompleteOptions = (options: Array<string>, state: string) => {
       return options.filter(option => option.includes(state));
     }
 
-    const generateOptionCategories = () => clothes.map(product => product.category).filter((product, pos, self) => self.indexOf(product) === pos);
+    const generateOptionCategories = () => clothingItems.map(product => product.category).filter((product, pos, self) => self.indexOf(product) === pos);
 
 
 
     const handleShowMoreProducts = () => {
-        CalculateProductsToDisplay(counter);
-        setCounter((prev) => prev + 1);
+        calculateProductsToDisplay();
+        setCounter(prev => prev + 1);
     }
 
-    const handleAutocompleteChange = (event: any, value: string) => {
+    const handleItemCategoryChange = (event: any, value: string) => {
       setItemCategoryFilter(value);
-      setCounter(0);
-      setProductsToDisplay([]);
     }
   
     const handleGenderCategoryChange = (event: any, value: unknown) => {
-      const newGenderCategory = value as string;
-      console.log('nowa kategoria ' + JSON.stringify(newGenderCategory))
-      setGenderCategory(newGenderCategory);
+      setGenderCategoryFilter(event.target.value);
     }
 
 
@@ -114,7 +110,7 @@ const Products = ({defaultCategory}:{defaultCategory:string}) => {
             <Autocomplete
               filterOptions = {() => filterAutocompleteOptions(generateOptionCategories(), itemCategoryFilter)}
               disableClearable
-              onInputChange = {handleAutocompleteChange}
+              onInputChange = {handleItemCategoryChange}
               options={generateOptionCategories()}
               getOptionLabel={(option) => option}
               renderInput={(params) => <TextField {...params} label="Szukaj" variant="outlined" />}
@@ -122,7 +118,7 @@ const Products = ({defaultCategory}:{defaultCategory:string}) => {
             <Select
             native
               variant = 'standard'
-              value={genderCategory}
+              value={genderCategoryFilter}
               onChange={handleGenderCategoryChange}
               label="Kategoria"
             >

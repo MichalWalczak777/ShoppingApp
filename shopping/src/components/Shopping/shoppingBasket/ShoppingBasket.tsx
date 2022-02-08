@@ -60,7 +60,7 @@ const ShoppingBasket = () => {
     const currentUser = useSelector((state: RootState) => state.auth);
     const {emptyBasketBox, shoppingBasketContainer, emptyBasketHeader, emptyBasketText, buttonLabel, button, emptyBasketIcon} = useStyles();
 
-    const defaultShirt: SizedProductModel = {name: "podkoszulek pulp fiction", image: pulpFictionShirt, category:'podkoszulki', price: 74.99, id: 'w1', size: "L", quantity: 1};
+    const defaultShirt: SizedProductModel = {name: '', image: '', category:'', genderCategory:'', price: 0, id: '', size: '', quantity: 0};
     const [clothes, setClothes] = useState<Array<SizedProductModel>>(new Array(3).fill(defaultShirt));
     const [basketValue, setBasketValue] = useState<number>(0);
 
