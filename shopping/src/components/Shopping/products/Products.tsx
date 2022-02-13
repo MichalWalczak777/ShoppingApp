@@ -34,6 +34,7 @@ const Products = ({defaultCategory}:{defaultCategory:string}) => {
     const [productsToDisplay, setProductsToDisplay] = useState<Array<ProductModel>>([]);
     const [counter, setCounter] = useState<number>(0);
     const [isShowMoreButtonVisible, setIsShowMoreButtonVisible] = useState<boolean>(true); 
+    const [searchbarValue, setSearchbarValue] = useState<string>('');
     const [itemCategoryFilter, setItemCategoryFilter] = useState<string>('');
     const [genderCategoryFilter, setGenderCategoryFilter] = useState<string>(defaultCategory);
 
@@ -61,7 +62,7 @@ const Products = ({defaultCategory}:{defaultCategory:string}) => {
         filteredClothes = filteredClothes.filter(product => product.genderCategory === genderCategoryFilter);
       }
       if (itemCategoryFilter){
-        filteredClothes = filteredClothes.filter(product => product.category === itemCategoryFilter);
+        filteredClothes = filteredClothes.filter(product => product.category.includes(itemCategoryFilter));
       }
       return filteredClothes;
     }
@@ -96,11 +97,24 @@ const Products = ({defaultCategory}:{defaultCategory:string}) => {
     }
 
     const handleItemCategoryChange = (event: any, value: string) => {
-      setItemCategoryFilter(value);
+      setTimeout(() => {
+        setSearchbarValue(value);
+        setItemCategoryFilter(value);
+      },);
+    }
+
+    const handleSearchbarChange = (event: any, value: string, reason:string) => {
+      if(reason === 'input'){
+        setSearchbarValue(event.target.value);
+      }
     }
   
     const handleGenderCategoryChange = (event: any, value: unknown) => {
       setGenderCategoryFilter(event.target.value);
+    }
+
+    const handleClose = async () => {
+      setItemCategoryFilter(searchbarValue); 
     }
 
 
@@ -108,15 +122,19 @@ const Products = ({defaultCategory}:{defaultCategory:string}) => {
         <div className="products">
             <ScrollToTop showBelow={1000}/>
             <Autocomplete
-              filterOptions = {() => filterAutocompleteOptions(generateOptionCategories(), itemCategoryFilter)}
+              clearOnEscape
+              filterOptions = {() => filterAutocompleteOptions(generateOptionCategories(), searchbarValue)}
               disableClearable
-              onInputChange = {handleItemCategoryChange}
+              inputValue = {searchbarValue}
+              onInputChange = {handleSearchbarChange}
+              onChange = {handleItemCategoryChange}
+              onClose = {handleClose}
               options={generateOptionCategories()}
               getOptionLabel={(option) => option}
               renderInput={(params) => <TextField {...params} label="Szukaj" variant="outlined" />}
             />
             <Select
-            native
+              native
               variant = 'standard'
               value={genderCategoryFilter}
               onChange={handleGenderCategoryChange}
