@@ -35,10 +35,7 @@ const App = () => {
           <Switch>
             <div className='main-content'>
               <Route exact path="/" component={StartPage}/>
-              <Route key="womens-clothing" exact path="/woman" render={(props) => <Products {...props} defaultCategory = {genderCategories._WOMAN} />} />
-              <Route key="mens-clothing" exact path="/man" render={(props) => <Products {...props} defaultCategory = {genderCategories._MAN} />} />
-              <Route key="kids-clothing" exact path="/kid" render={(props) => <Products {...props} defaultCategory = {genderCategories._KID} />} />
-              <Route key="all-clothing" exact path="/all" render={(props) => <Products {...props} defaultCategory = {genderCategories._EVERYTHING} />} />
+              <Route exact path="/products/:category" component={Products} />
               <Route exact path="/basket" component={ShoppingBasket}/>
               <Route exact path="/product/:id" component={ProductDetails}/>
               <Route exact path="/authPanel" component={AuthPanel}/>

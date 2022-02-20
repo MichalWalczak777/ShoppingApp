@@ -9,6 +9,7 @@ import {Button,
         Select} from '@material-ui/core';
 import * as genderCategories from './../../../categories/clothingGenderCategories';
 import { mockClothingItems as clothingItems } from "../../../productsData";
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
     hidden: {
@@ -24,19 +25,21 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-const Products = ({defaultCategory}:{defaultCategory:string}) => {
+const Products = () => {
 
 
     const productsPerPage: number = 20;
 
     const {hidden, showMoreButton} = useStyles();
 
+    const pathParameters: {category:string} = useParams();
+
     const [productsToDisplay, setProductsToDisplay] = useState<Array<ProductModel>>([]);
     const [counter, setCounter] = useState<number>(0);
     const [isShowMoreButtonVisible, setIsShowMoreButtonVisible] = useState<boolean>(true); 
     const [searchbarValue, setSearchbarValue] = useState<string>('');
     const [itemCategoryFilter, setItemCategoryFilter] = useState<string>('');
-    const [genderCategoryFilter, setGenderCategoryFilter] = useState<string>(defaultCategory);
+    const [genderCategoryFilter, setGenderCategoryFilter] = useState<string>(pathParameters.category);
 
     useEffect(() => {
       setCounter(0);
