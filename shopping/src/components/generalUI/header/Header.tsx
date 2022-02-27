@@ -53,7 +53,7 @@ const Header = () => {
             </IconButton>
         )
     }
-    const navigationIcons = [{icon: <AccountCircleIcon/>, name: "account", link: "/accountDetails"}, {icon: <SearchIcon/>, name: "search",  link: "/"}, {icon: <Badge badgeContent={basketQuantityState} color="primary"><ShoppingCartIcon/></Badge>, name: "basket",  link: "/basket"}];
+    const navigationIcons = [{icon: <AccountCircleIcon/>, name: "account", link: "/accountDetails"}, {icon: <SearchIcon/>, name: "search",  link: "/products/"}, {icon: <Badge badgeContent={basketQuantityState} color="primary"><ShoppingCartIcon/></Badge>, name: "basket",  link: "/basket"}];
     const drawerMenuOptions = [{name: "ONA", link: "/woman"}, {name: "ON", link: "/man"}, {name: "DZIECKO", link: "/kid"}]
 
     const navigationMenu = () => {

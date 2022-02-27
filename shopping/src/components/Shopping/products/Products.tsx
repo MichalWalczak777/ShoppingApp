@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import { Autocomplete } from '@material-ui/lab';
 import ProductsList from "../productsList/ProductsList";
 import { ProductModel } from "../../../models/ProductModel";
@@ -31,7 +31,7 @@ const Products = () => {
     const productsPerPage: number = 20;
 
     const {hidden, showMoreButton} = useStyles();
-
+    const focusable = useRef<HTMLInputElement>(null);
     const pathParameters: {category:string} = useParams();
 
     const [productsToDisplay, setProductsToDisplay] = useState<Array<ProductModel>>([]);
@@ -39,7 +39,7 @@ const Products = () => {
     const [isShowMoreButtonVisible, setIsShowMoreButtonVisible] = useState<boolean>(true); 
     const [searchbarValue, setSearchbarValue] = useState<string>('');
     const [itemCategoryFilter, setItemCategoryFilter] = useState<string>('');
-    const [genderCategoryFilter, setGenderCategoryFilter] = useState<string>(pathParameters.category);
+    const [genderCategoryFilter, setGenderCategoryFilter] = useState<string>(pathParameters.category || genderCategories._EVERYTHING);
 
     useEffect(() => {
       setCounter(0);
@@ -57,6 +57,12 @@ const Products = () => {
         handleShowMoreProducts();
       }
     }, [productsToDisplay])
+
+    useEffect(()=> {
+        if (!pathParameters.category){
+          focusable.current?.focus();
+        }
+    },[])
 
 
     const applyProductFilters = (filteredClothes: Array<ProductModel>) => {
@@ -134,7 +140,7 @@ const Products = () => {
               onClose = {handleClose}
               options={generateOptionCategories()}
               getOptionLabel={(option) => option}
-              renderInput={(params) => <TextField {...params} label="Szukaj" variant="outlined" />}
+              renderInput={(params) => <TextField {...params} inputRef={focusable} label="Szukaj" variant="outlined" />}
             />
             <Select
               native
