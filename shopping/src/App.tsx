@@ -18,6 +18,7 @@ import { login } from "./redux/actions/auth";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import AccountDetails from "./components/auth/accountDetails/AccountDetails";
 import * as genderCategories from './categories/clothingGenderCategories';
+import Container from "./components/reusableComponents/container/Container";
 
 const App = () => {
 
@@ -29,22 +30,24 @@ const App = () => {
 
 
   return (
-    <div className="app">
-      <HashRouter>
-          <Header/>  
-          <Switch>
-            <div className='main-content'>
-              <Route exact path="/" component={StartPage}/>
-              <Route exact path="/products/:category?" component={Products} />
-              <Route exact path="/basket" component={ShoppingBasket}/>
-              <Route exact path="/product/:id" component={ProductDetails}/>
-              <Route exact path="/authPanel" component={AuthPanel}/>
-              <PrivateRoute exact path="/accountDetails" component={AccountDetails}/>
-            </div>
-          </Switch>
-          <Footer/>                                                                                                                                                                                                              
-      </HashRouter>
-    </div> 
+      <div className="app">
+        <HashRouter>
+            <Header/>  
+            <Switch>
+              <div className='main-content'>
+                <Container>
+                  <Route exact path="/" component={StartPage}/>
+                  <Route exact path="/products/:category?" component={Products} />
+                  <Route exact path="/basket" component={ShoppingBasket}/>
+                  <Route exact path="/product/:id" component={ProductDetails}/>
+                  <Route exact path="/authPanel" component={AuthPanel}/>
+                  <PrivateRoute exact path="/accountDetails" component={AccountDetails}/>
+                </Container>
+              </div>
+            </Switch>
+            <Footer/>                                                                                                                                                                                                              
+        </HashRouter>
+      </div>
     );
 }
 

@@ -16,6 +16,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { Link } from "react-router-dom";
 
 import { useSelector } from "react-redux";
+import Container from "../../reusableComponents/container/Container";
 
 
 const useStyles = makeStyles(() => ({
@@ -58,12 +59,14 @@ const Header = () => {
 
     const navigationMenu = () => {
         return (
-            <Toolbar className={toolbar}>
-                <div className={logo}>{hamburgerMenu()}<Link to = '/'> YOURSHOP </Link></div>
-                <div className="navigationButtons">
-                    {navigationIcons.map(menuElement => <Link to={menuElement.link} key={menuElement.name}><IconButton className={icon}>{menuElement.icon}</IconButton></Link>)}
-                </div>
-            </Toolbar>)
+            <Container>
+                <Toolbar className={toolbar}>
+                    <div className={logo}>{hamburgerMenu()}<Link to = '/'> YOURSHOP </Link></div>
+                    <div className="navigationButtons">
+                        {navigationIcons.map(menuElement => <Link to={menuElement.link} key={menuElement.name}><IconButton className={icon}>{menuElement.icon}</IconButton></Link>)}
+                    </div>
+                </Toolbar>
+            </Container>)
     }
 
     return (

@@ -6,6 +6,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import { useLocation } from "react-router-dom";
 import { NoEncryption } from "@material-ui/icons";
+import Container from "../../reusableComponents/container/Container";
 
 const useStyles = makeStyles(() => ({
     footer: {
@@ -69,25 +70,27 @@ const Footer = () => {
 
     return (
         <footer className = {footer}>
-            {footerData?.map((data, index) => 
-                    <Accordion expanded = {isExpanded[index]} className={accordion} onChange={handleChange(index)} key={"accordion" + data.summary}>
-                        <AccordionSummary className={accordionSummary}>
-                            {data.summary}
-                            <ExpandMoreIcon className={arrow}/>
-                        </AccordionSummary>
-                        <AccordionDetails className={accordionDetails}>
-                            <ul>
-                                {data.details?.map(dataDetails=><li className={listElement} key={"accordion details" + dataDetails}>{dataDetails}</li>)}
-                            </ul>
-                        </AccordionDetails>
-                    </Accordion>)}
-            <div className="footer-socialMedia">
-                <div>
-                    <FacebookIcon className={footerIcon}/>
-                    <InstagramIcon className={footerIcon}/>
-                    <YouTubeIcon className={footerIcon}/>
+            <Container>
+                {footerData?.map((data, index) => 
+                        <Accordion expanded = {isExpanded[index]} className={accordion} onChange={handleChange(index)} key={"accordion" + data.summary}>
+                            <AccordionSummary className={accordionSummary}>
+                                {data.summary}
+                                <ExpandMoreIcon className={arrow}/>
+                            </AccordionSummary>
+                            <AccordionDetails className={accordionDetails}>
+                                <ul>
+                                    {data.details?.map(dataDetails=><li className={listElement} key={"accordion details" + dataDetails}>{dataDetails}</li>)}
+                                </ul>
+                            </AccordionDetails>
+                        </Accordion>)}
+                <div className="footer-socialMedia">
+                    <div>
+                        <FacebookIcon className={footerIcon}/>
+                        <InstagramIcon className={footerIcon}/>
+                        <YouTubeIcon className={footerIcon}/>
+                    </div>
                 </div>
-            </div>
+            </Container>
         </footer>
     );
 }
