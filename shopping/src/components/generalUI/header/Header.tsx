@@ -19,28 +19,10 @@ import { useSelector } from "react-redux";
 import Container from "../../reusableComponents/container/Container";
 
 
-const useStyles = makeStyles(() => ({
-    toolbar: {
-      display: "flex",
-      justifyContent: "space-between",
-    },
-    appbar: {
-        backgroundColor: "#fff"
-    },
-    icon: {
-        color: '#000'
-    },
-    logo: {
-        color: '#000',
-        fontFamily: 'Orbitron'
-    }
-}));
-
 const Header = () => {
 
     const basketQuantityState = useSelector((state: any) => state.basketQuantity);
 
-    const {appbar, toolbar, icon, logo} = useStyles();
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
     const handleMenu = () => {
@@ -50,20 +32,31 @@ const Header = () => {
     const hamburgerMenu = () => {
         return (
             <IconButton onClick={handleMenu}>
-              <MenuIcon className={icon}/>
+              <MenuIcon className='icon'/>
             </IconButton>
         )
     }
-    const navigationIcons = [{icon: <AccountCircleIcon/>, name: "account", link: "/accountDetails"}, {icon: <SearchIcon/>, name: "search",  link: "/products/"}, {icon: <Badge badgeContent={basketQuantityState} color="primary"><ShoppingCartIcon/></Badge>, name: "basket",  link: "/basket"}];
-    const drawerMenuOptions = [{name: "ONA", link: "/woman"}, {name: "ON", link: "/man"}, {name: "DZIECKO", link: "/kid"}]
+    const navigationIcons = [{icon: <SearchIcon/>, name: "Wyszukaj",  link: "/products/"}, {icon: <AccountCircleIcon/>, name: "Logowanie", link: "/accountDetails"}, {icon: <Badge badgeContent={basketQuantityState} color="primary"><ShoppingCartIcon/></Badge>, name: "Koszyk",  link: "/basket"}];
+    const drawerMenuOptions = [{name: "ona", link: "/woman"}, {name: "on", link: "/man"}, {name: "dziecko", link: "/kid"}]
 
     const navigationMenu = () => {
         return (
             <Container>
-                <Toolbar className={toolbar}>
-                    <div className={logo}>{hamburgerMenu()}<Link to = '/'> YOURSHOP </Link></div>
-                    <div className="navigationButtons">
-                        {navigationIcons.map(menuElement => <Link to={menuElement.link} key={menuElement.name}><IconButton className={icon}>{menuElement.icon}</IconButton></Link>)}
+                <Toolbar className='header-toolbar materialComponent'>
+                    <div className='header-logoMobile materialComponent'><span className='header-hamburgerMenu'>{hamburgerMenu()}</span><Link to = '/'> YOURSHOP </Link></div>
+                    <div className="header-mobileNavigation">
+                        {navigationIcons.map(menuElement => <Link to={menuElement.link} key={menuElement.name}><IconButton className='header-icon materialComponent'>{menuElement.icon}</IconButton></Link>)}
+                    </div>
+                    <div className="header-navMenu">
+                        <div className='header-navMenuLogo'><Link to = '/'> YOURSHOP </Link></div>
+                        <div className='header-navMenuContent'>
+                        <div className='header-categoryButtons'>
+                            {drawerMenuOptions.map(drawerCategory => <Link to={drawerCategory.link} key={drawerCategory.name}><div className='header-categoryButton'>{drawerCategory.name}</div></Link>)}
+                        </div>
+                        <div className='header-navButtons'>
+                            {navigationIcons.map(menuElement => <Link to={menuElement.link} key={menuElement.name}><IconButton className='header-icon materialComponent'>{menuElement.icon}<span className='header-iconLabel'>{menuElement.name}</span></IconButton></Link>)}
+                        </div>
+                        </div>
                     </div>
                 </Toolbar>
             </Container>)
@@ -71,7 +64,7 @@ const Header = () => {
 
     return (
         <header>
-            <AppBar className={appbar}>{navigationMenu()}</AppBar>
+            <AppBar className='header-appbar materialComponent'>{navigationMenu()}</AppBar>
             <Drawer anchor="left" open={isMenuOpen} onClose={() => setIsMenuOpen(false)}>
                 <p className="header-drawerMenuClose"><IconButton onClick={handleMenu}><CloseIcon/></IconButton></p>
                 <ul className="header-drawerMenu">
