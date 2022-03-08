@@ -12,27 +12,30 @@ const StartPage = () => {
             borderRadius: '5px',
             color: 'white',
             zIndex: 2
-        },
-        buttonLabel: {
-            paddingRight: '8px'
         }
     }));
 
-    const {button, buttonLabel} = useStyles();
+    const {button} = useStyles();
 
     return (
         <div className="startPage">
             <div className="startPage-imageWrapper startPage-imageWoman">
-                <h2>KOBIETA</h2>
-                <Button className={button} color="primary" variant="outlined" component={Link} to={"/products/"+genderCategories._WOMAN}><span className={buttonLabel}>Zobacz więcej</span><ArrowForwardIcon/></Button>
+                <div className='startPage-WrapperContent'>
+                    <h2>KOBIETA</h2>
+                    <Button className='startPage-materialComponent startPage-button' color="primary" variant="outlined" component={Link} to={"/products/"+genderCategories._WOMAN}><span className='startPage-buttonLabel'>Zobacz więcej</span><ArrowForwardIcon/></Button>
+                </div>
             </div>
             <div className="startPage-imageWrapper startPage-imageMan">
-                <h2>MĘŻCZYZNA</h2>
-                <Button className={button} color="primary" variant="outlined" component={Link} to={"/products/"+genderCategories._MAN}><span className={buttonLabel}>Zobacz więcej</span><ArrowForwardIcon/></Button>
+                <div className='startPage-WrapperContent'>
+                    <h2>MĘŻCZYZNA</h2>
+                    <Button className='startPage-materialComponent startPage-button' color="primary" variant="outlined" component={Link} to={"/products/"+genderCategories._MAN}><span className='startPage-buttonLabel'>Zobacz więcej</span><ArrowForwardIcon/></Button>
+                </div>
             </div>
             <div className="startPage-imageWrapper startPage-imageKids">
-                <h2>DZIECKO</h2>
-                <Button className={button} color="primary" variant="outlined" component={Link} to={"/products/"+genderCategories._KID}><span className={buttonLabel}>Zobacz więcej</span><ArrowForwardIcon/></Button>
+                <div className='startPage-WrapperContent'>
+                    <h2>DZIECKO</h2>
+                    <Button className='startPage-materialComponent startPage-button' color="primary" variant="outlined" component={Link} to={"/products/"+genderCategories._KID}><span className='startPage-buttonLabel'>Zobacz więcej</span><ArrowForwardIcon/></Button>
+                </div>
             </div>
         </div>
     );
