@@ -5,56 +5,15 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import { useLocation } from "react-router-dom";
-import { NoEncryption } from "@material-ui/icons";
 import Container from "../../reusableComponents/container/Container";
-
-const useStyles = makeStyles(() => ({
-    footer: {
-        padding: '20px 0 0 0',
-        backgroundColor: '#F0F0F1'
-    },
-    footerIcon: {
-        padding: '10px 8px 6px'
-    },
-    accordion: {
-        backgroundColor: '#F0F0F1',
-        boxShadow: "none",
-        '&:before': {
-            display: 'none'
-        }
-    },
-    listElement: {
-        padding:'0 0 10px 0'
-    },
-    accordionDetails: {
-        padding: '0 16px 4px',
-        margin:'0'
-    },
-    accordionSummary: {
-        '*': {
-            display: 'flex',
-            alignItems: 'center',
-        },
-        '.Mui-expanded': {
-            minHeight: '48px'
-        },
-    
-    },
-    arrow: {
-        alignSelf: 'center',
-        margin: '0 0 0 8px'
-    }
-
-}));
 
 
 const Footer = () => {
 
     const [isExpanded, setIsExpanded] = useState<Array<boolean>>([false, false, false]);
     const location = useLocation();
-    const {footer, footerIcon, accordion, listElement, accordionDetails, accordionSummary, arrow} = useStyles();
     const footerData = [{summary: "Kontakt", details:[" tel. (12) 333 23 11", "sklep@bestshopping.com", <a>formularz kontaktowy</a>]},
-                        {summary: "Informacje", details: ["O nas", "Nasze salony", "Polityka prywatności", "Pracuj w Best Shopping!"]},
+                        {summary: "Informacje", details: ["O nas", "Nasze salony", "Polityka prywatności", "Pracuj w YourShop!"]},
                         {summary: "Obsługa klienta", details: ["Dostawa", "Formy płatności", "Czas realizacji zamównienia", "Regulamin", "Zwroty i reklamacje"]}];
 
 
@@ -69,25 +28,36 @@ const Footer = () => {
     }
 
     return (
-        <footer className = {footer}>
+        <footer className = 'footer'>
             <Container>
-                {footerData?.map((data, index) => 
-                        <Accordion expanded = {isExpanded[index]} className={accordion} onChange={handleChange(index)} key={"accordion" + data.summary}>
-                            <AccordionSummary className={accordionSummary}>
-                                {data.summary}
-                                <ExpandMoreIcon className={arrow}/>
-                            </AccordionSummary>
-                            <AccordionDetails className={accordionDetails}>
-                                <ul>
-                                    {data.details?.map(dataDetails=><li className={listElement} key={"accordion details" + dataDetails}>{dataDetails}</li>)}
-                                </ul>
-                            </AccordionDetails>
-                        </Accordion>)}
+                <div className='footer-mobile'>
+                    {footerData?.map((data, index) => 
+                            <Accordion expanded = {isExpanded[index]} className='footer-accordion footer-materialComponent' onChange={handleChange(index)} key={"accordion" + data.summary}>
+                                <AccordionSummary className='footer-accordionSummary footer-materialComponent'>
+                                    {data.summary}
+                                    <ExpandMoreIcon className='footer-arrowIcon'/>
+                                </AccordionSummary>
+                                <AccordionDetails className='footer-accordionDetails footer-materialComponent'>
+                                    <ul>
+                                        {data.details?.map(dataDetails=><li className='footer-listElement' key={"accordion details" + dataDetails}>{dataDetails}</li>)}
+                                    </ul>
+                                </AccordionDetails>
+                            </Accordion>)}
+                </div>
+                <div className='footer-desktop'>
+                    {footerData?.map((data) => 
+                        <div className='footer-dataColumn' key={"non-accordion" + data.summary}>
+                            <h3>{data.summary}</h3>
+                            <ul>
+                                {data.details?.map(dataDetails=><li className='footer-listElement' key={"non-accordion" + dataDetails}>{dataDetails}</li>)}
+                            </ul>
+                        </div>)}
+                </div>
                 <div className="footer-socialMedia">
                     <div>
-                        <FacebookIcon className={footerIcon}/>
-                        <InstagramIcon className={footerIcon}/>
-                        <YouTubeIcon className={footerIcon}/>
+                        <FacebookIcon className='footer-socialMediaIcon'/>
+                        <InstagramIcon className='footer-socialMediaIcon'/>
+                        <YouTubeIcon className='footer-socialMediaIcon'/>
                     </div>
                 </div>
             </Container>
