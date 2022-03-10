@@ -37,7 +37,7 @@ const Header = () => {
         )
     }
     const navigationIcons = [{icon: <SearchIcon/>, name: "Wyszukaj",  link: "/products/"}, {icon: <AccountCircleIcon/>, name: "Logowanie", link: "/accountDetails"}, {icon: <Badge badgeContent={basketQuantityState} color="primary"><ShoppingCartIcon/></Badge>, name: "Koszyk",  link: "/basket"}];
-    const drawerMenuOptions = [{name: "ona", link: "/woman"}, {name: "on", link: "/man"}, {name: "dziecko", link: "/kid"}]
+    const drawerMenuOptions = [{name: "ona", link: "/products/woman"}, {name: "on", link: "/products/man"}, {name: "dziecko", link: "/products/kid"}]
 
     const navigationMenu = () => {
         return (

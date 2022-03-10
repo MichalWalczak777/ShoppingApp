@@ -64,6 +64,10 @@ const Products = () => {
         }
     },[])
 
+    useEffect(()=> {
+      setGenderCategoryFilter(pathParameters.category || genderCategories._EVERYTHING);
+    },[pathParameters])
+
 
     const applyProductFilters = (filteredClothes: Array<ProductModel>) => {
 
