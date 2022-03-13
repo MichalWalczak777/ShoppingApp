@@ -19,3 +19,16 @@
 .MuiAutocomplete-root{
     padding: 90px 20px 20px;
 }
+
+.products-categorySelect.products-materialComponent{
+    margin: 0 20px;
+}
+
+@media (min-width: 992px){
+    .MuiAutocomplete-root{
+        padding: 190px 20px 4px;
+    }
+    .products-categorySelect.products-materialComponent{
+        display: none;
+    }
+}

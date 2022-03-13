@@ -6,7 +6,8 @@ import ScrollToTop from "../../reusableComponents/ScrollToTop";
 import {Button,
         TextField,
         makeStyles, 
-        Select} from '@material-ui/core';
+        Select,
+        MenuItem} from '@material-ui/core';
 import * as genderCategories from './../../../categories/clothingGenderCategories';
 import { mockClothingItems as clothingItems } from "../../../productsData";
 import { useParams } from "react-router-dom";
@@ -28,7 +29,7 @@ const useStyles = makeStyles(() => ({
 const Products = () => {
 
 
-    const productsPerPage: number = 20;
+    const productsPerPage: number = 24;
 
     const {hidden, showMoreButton} = useStyles();
     const focusable = useRef<HTMLInputElement>(null);
@@ -59,14 +60,14 @@ const Products = () => {
     }, [productsToDisplay])
 
     useEffect(()=> {
-        if (!pathParameters.category){
-          focusable.current?.focus();
-        }
-    },[])
+      if (!pathParameters.category){
+        focusable.current?.focus();
+      }
+  },[])
 
-    useEffect(()=> {
-      setGenderCategoryFilter(pathParameters.category || genderCategories._EVERYTHING);
-    },[pathParameters])
+  useEffect(()=> {
+    setGenderCategoryFilter(pathParameters.category || genderCategories._EVERYTHING);
+  },[pathParameters])
 
 
     const applyProductFilters = (filteredClothes: Array<ProductModel>) => {
@@ -147,22 +148,25 @@ const Products = () => {
               renderInput={(params) => <TextField {...params} inputRef={focusable} label="Szukaj" variant="outlined" />}
             />
             <Select
-              native
-              variant = 'standard'
+              displayEmpty
+              className = 'products-categorySelect products-materialComponent'
               value={genderCategoryFilter}
               onChange={handleGenderCategoryChange}
               label="Kategoria"
+              variant="standard"
             >
-              <option value={genderCategories._WOMAN}>KOBIETA</option>
-              <option value={genderCategories._MAN}>MĘŻCZYZNA</option>
-              <option value={genderCategories._KID}>DZIECKO</option>
-              <option value={genderCategories._EVERYTHING}>WSZYSTKO</option>
+              <MenuItem value={genderCategories._WOMAN}>Kobieta</MenuItem>
+              <MenuItem value={genderCategories._MAN}>Mężczyzna</MenuItem>
+              <MenuItem value={genderCategories._KID}>Dziecko</MenuItem>
+              <MenuItem value={genderCategories._EVERYTHING}>Wszystko</MenuItem>
             </Select>
+
             <div className="products-container">
                 <ProductsList productsArray={productsToDisplay}/>
                 <Button className={!isShowMoreButtonVisible ? hidden : showMoreButton} onClick={handleShowMoreProducts} variant='outlined'>WCZYTAJ WIĘCEJ PRODUKTÓW</Button>
-            </div>
+            </div>          
         </div>
+        
     )
 }
 
