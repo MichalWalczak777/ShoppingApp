@@ -60,14 +60,11 @@ const Products = () => {
     }, [productsToDisplay])
 
     useEffect(()=> {
+      setGenderCategoryFilter(pathParameters.category || genderCategories._EVERYTHING);
       if (!pathParameters.category){
         focusable.current?.focus();
       }
-  },[])
-
-  useEffect(()=> {
-    setGenderCategoryFilter(pathParameters.category || genderCategories._EVERYTHING);
-  },[pathParameters])
+    },[pathParameters])
 
 
     const applyProductFilters = (filteredClothes: Array<ProductModel>) => {
