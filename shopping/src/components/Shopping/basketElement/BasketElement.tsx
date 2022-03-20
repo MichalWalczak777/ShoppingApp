@@ -47,23 +47,28 @@ const BasketElement = ({sizedProduct}: {sizedProduct:SizedProductModel}) => {
                 </Link>
             </div>
             <div className="basketElement-dataWrapper">
-                <div className="basketElement-iconBox">
-                    <IconButton onClick={handleClick}>
-                        <DeleteIcon/>
-                    </IconButton>
+                <div className='basketElement-upperData'>
+                    <div className='basketElement-mainInfo'>
+                        <h3>{sizedProduct.name}</h3>
+                        <p>{sizedProduct.price + " PLN"}</p>
+                    </div>
+                    <div>
+                        <IconButton className='basketElement-iconButton basketElement-materialComponent' onClick={handleClick}>
+                            <DeleteIcon/>
+                        </IconButton>
+                    </div>
                 </div>
-                <p>{sizedProduct.name}</p>
-                <p>{sizedProduct.price + " PLN"}</p>
-                <p>Rozmiar: {" " + sizedProduct.size}</p>
-                <p>Suma: {(sizedProduct.price * sizedProduct.quantity).toFixed(2) + " PLN"}</p>
-                <FormControl>
-                    <Select variant="outlined"
-                            id="basketElement-selectQuantity"
-                            value={sizedProduct.quantity}
-                            onChange={handleChange}>
-                        {possibleQuantities.map(productsQuantity => <MenuItem key={"quantity"+productsQuantity} value={productsQuantity}>{productsQuantity}</MenuItem>)}
+                <div className='basketElement-lowerData'>
+                    <p>Rozmiar: {" " + sizedProduct.size}</p>
+                    <p>Suma: {(sizedProduct.price * sizedProduct.quantity).toFixed(2) + " PLN"}</p>
+                    <Select className='basketElement-select'
+                                variant="outlined"
+                                id="basketElement-selectQuantity"
+                                value={sizedProduct.quantity}
+                                onChange={handleChange}>
+                            {possibleQuantities.map(productsQuantity => <MenuItem key={"quantity"+productsQuantity} value={productsQuantity}>{productsQuantity}</MenuItem>)}
                     </Select>
-                </FormControl>
+                </div>
             </div>
         </div>
     );
