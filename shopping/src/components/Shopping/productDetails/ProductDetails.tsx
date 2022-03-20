@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
-import pulpFictionShirt from "../../../assets/arun-clarke-ZqnlW6EAel0-unsplash.jpg";
 import { ProductModel } from "../../../models/ProductModel";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import InfoIcon from '@material-ui/icons/Info';
 import { useDispatch, useSelector } from "react-redux";
 import { addToBasket } from "../../../redux/actions"
 import { Select,
     MenuItem,
     Button,
-    makeStyles, 
     FormControl,
     InputLabel} from '@material-ui/core';
 import { SizedProductModel } from "../../../models/SizedProductModel";
@@ -17,23 +16,9 @@ import { useParams } from 'react-router-dom';
 import { changeBasketQuantity } from "../../../redux/actions/basketQuantity";
 import { RootState } from "../../../redux/reducers";
 
-const useStyles = makeStyles(() => ({
-    productDetailsButton: {
-        height: "56px",
-        width: "48%"
-    },
-    productDetailsSelectSize: {
-        height: "100%",
-        width: "48%"
-    },
-    productName: {
-        textTransform: 'capitalize'
-    }
-}));
 
-const ProductDetails= () => {
+const ProductDetails = () => {
 
-    const {productDetailsButton, productDetailsSelectSize, productName} = useStyles();
     const paramId:{id:string} = useParams();
     const id:string = paramId.id;
 
@@ -67,34 +52,67 @@ const ProductDetails= () => {
         }
     }
 
-    return (
-        <div className="productDetails">
-            <div className="productDetails-mainContent">
-                <img className="productDetails-image" src={product.image}/>         
-                <p className="productDetails-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam recusandae nihil neque tempora laboriosam, at praesentium porro eius aspernatur enim delectus earum provident blanditiis facilis numquam sunt nulla. Tempora, debitis?</p>
+    const ProductDetailsMenu = () => {
+        return (
+            <div className="productDetails-menu">
+            <div className="productDetails-menuInfo">
+                <p className = 'productDetails-name'>{product.name}</p>
+                <p className = 'productDetails-price'>{product.price}</p>
             </div>
-            <div className="productDetails-bottomMenu">
-                <div className="productDetails-bottomMenuRow">
-                    <p className = {productName}>{product.name}</p>
-                    <p>{product.price}</p>
+            <div className="productDetails-selectWrapper">
+                <div className="productDetails-menuUI">
+                    <div className = 'productDetails-selectLabelOutside'>Wybierz rozmiar</div>
+                    <FormControl className='productDetails-selectForm productDetails-materialComponent'>
+                        <InputLabel className ='productDetails-selectLabelInside productDetails-materialComponent' id="productDetails-selectSizeLabel">Wybierz rozmiar</InputLabel>
+                        <Select variant="outlined"
+                                labelId="productDetails-selectSizeLabel"
+                                id="productDetails-selectSize"
+                                value={size}
+                                onChange={handleChange}>
+                            {sizes.map(itemSize => <MenuItem key={itemSize} value={itemSize}>{itemSize}</MenuItem>)}
+                        </Select>
+                    </FormControl>
                 </div>
-                <div className="productDetails-bottomMenuRow">
-                <FormControl className={productDetailsSelectSize}>
-                    <InputLabel id="productDetails-selectSizeLabel">Wybierz rozmiar</InputLabel>
-                    <Select variant="outlined"
-                            labelId="productDetails-selectSizeLabel"
-                            id="productDetails-selectSize"
-                            value={size}
-                            onChange={handleChange}>
-                        {sizes.map(itemSize => <MenuItem key={itemSize} value={itemSize}>{itemSize}</MenuItem>)}
-                    </Select>
-                </FormControl>
-                <Button className={productDetailsButton} variant="contained" color="primary" onClick={handleClick}>
+                <Button className='productDetails-button productDetails-materialComponent' variant="contained" color="primary" onClick={handleClick}>
                     <ShoppingCartIcon/>
                     DODAJ
                 </Button>
+                <div className='productDetails-additionalInfo'><InfoIcon className='productDetails-additionalIcon productDetails-materialComponent'/><span className = 'productDetails-additionalInfoText'>Bezpłatna dostawa powyżej 200 złotych</span></div>
+            </div>
+        </div>
+        )
+    }
+
+    const ProductDetailsDescription = () => {
+        return(
+        <div className='productDetails-description'>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam recusandae nihil neque tempora laboriosam, at praesentium porro eius aspernatur enim delectus earum provident blanditiis facilis numquam sunt nulla. Tempora, debitis?</p>
+            <h3 className='productDetails-descriptionBold'>Materiał</h3>
+            <p>Bawełna 95%, poliester 5%</p>
+            <h3 className='productDetails-descriptionBold'>Rozmiar</h3>
+            <p>Osoba na zdjęciu ma 178 cm wzrostu i nosi rozmiar S </p>
+        </div>  
+    )
+    }
+
+    return (
+        <div className="productDetails">
+            <div className="productDetails-mobile">
+                <div className="productDetails-mainContent">
+                    <img className="productDetails-image" src={product.image}/>         
+                    <ProductDetailsDescription/>
                 </div>
-            </div>        
+                <ProductDetailsMenu/>
+            </div>           
+            <div className="productDetails-desktop">
+                <div className="productDetails-mainContentDesktop">
+                    <img className="productDetails-image" src={product.image}/>
+                    <ProductDetailsDescription/>
+                </div>
+                <div className='productDetails-menuWrapper'>
+                    <ProductDetailsMenu/>
+                </div>
+            </div>            
         </div>
     );
 }
