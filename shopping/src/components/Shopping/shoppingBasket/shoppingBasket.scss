@@ -1,16 +1,74 @@
 @import "../../../styles/variables";
 
-.shoppingBasket-mainHeader, .shoppingBasket-summaryHeader{
+.shoppingBasket{
     margin: 20px;
-    margin-bottom: 40px;
-    font-size: 1.75rem;
+}
+
+.shoppingBasket-mainHeader, .shoppingBasket-summaryHeader{
+    margin: 40px 0 0 10px;
+    font-size: 1.4rem;
     font-weight: 600;
-    text-transform: uppercase;
+    text-transform: Capitalize;
     font-family: Roboto;
-    text-align: center;
-    letter-spacing: 1px;
 }
 
 .shoppingBasket-mainHeader{
-    margin-top: calc(40px + #{$header-height});
+    margin-top: calc(55px + #{$header-height});
+}
+
+.shoppingBasket-basketElementsWrapper{
+    padding: 20px 0 10px 0;
+}
+
+.shoppingBasket-empty{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    p{
+        font-size: 0.9rem;
+    }
+}
+
+.shoppingBasket-headerEmpty{
+    margin-top: 120px;
+    margin-bottom: 70px;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.shoppingBasket-basketIcon{
+    padding-right: 12px;
+}
+
+.shoppingBasket-summaryContent{
+    padding: 20px 10px 10px 10px;
+
+    .shoppingBasket-summaryValuesWrapper{
+        padding-bottom: 10px;
+        border-bottom: 1px black solid;
+    }
+    .shoppingBasket-summaryValue{
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+        font-size: 0.9rem;
+    }
+    .shoppingBasket-summaryTotal{
+        padding-top: 15px;
+        font-weight: bold;
+    }
+}
+
+.shoppingBasket-button.shoppingBasket-materialComponent{
+        margin-top: 40px;
+        margin-bottom: 40px;
+        border-radius: 5px;
+        z-index: 2;
+        width: 100%;
+        .MuiButton-label{
+            padding-top: 2.5px;
+            padding-bottom: 2.5px;
+        }
 }
