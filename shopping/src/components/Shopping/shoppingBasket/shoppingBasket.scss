@@ -2,6 +2,8 @@
 
 .shoppingBasket{
     margin: 20px;
+    margin-top: calc(55px + #{$header-height});
+
 }
 
 .shoppingBasket-mainHeader, .shoppingBasket-summaryHeader{
@@ -10,10 +12,6 @@
     font-weight: 600;
     text-transform: Capitalize;
     font-family: Roboto;
-}
-
-.shoppingBasket-mainHeader{
-    margin-top: calc(55px + #{$header-height});
 }
 
 .shoppingBasket-basketElementsWrapper{
@@ -71,4 +69,23 @@
             padding-top: 2.5px;
             padding-bottom: 2.5px;
         }
+}
+
+@media (min-width: 992px){
+    .shoppingBasket{
+        display: flex;
+        justify-content: space-between;
+        margin-top: calc(115px + #{$header-height});
+        margin-bottom: 100px;
+    }
+    .shoppingBasket-content{
+        flex-basis: 60%;
+    }
+    .shoppingBasket-summary{
+        flex-basis: 30%;
+    }
+    .shoppingBasket-summaryContentWrapper{
+        position: sticky;
+        top: calc(155px + #{$header-height});
+    }
 }
