@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
-import { Button, makeStyles, TextField } from "@material-ui/core";
-import { FullscreenExitTwoTone } from "@material-ui/icons";
-import authStyles from "./authStyles";
+import { Button, TextField } from "@material-ui/core";
 import firebase from "../../firebase";
 
 const Login = () => {
 
-    const {authInput, authForm} = authStyles();
     const [fields, setFields] = useState(
         {
             email: "",
@@ -30,10 +27,10 @@ const Login = () => {
     return (
 
         <div>
-            <form className={authForm} onSubmit={handleSubmit}>
-                    <TextField className={authInput} type="email" name="email" label="Email" variant="outlined" onChange={handleChange} />
-                    <TextField className={authInput} type="password" name="password" label="Hasło" variant="outlined" onChange={handleChange} />
-                    <Button variant = 'contained' color = 'primary' onClick={handleSubmit}>ZALOGUJ SIĘ</Button>
+            <form className='auth-form' onSubmit={handleSubmit}>
+                    <TextField className='auth-input auth-materialComponent' size ='small' type="email" name="email" label="Email" variant="outlined" onChange={handleChange} />
+                    <TextField className='auth-input auth-materialComponent' size ='small' type="password" name="password" label="Hasło" variant="outlined" onChange={handleChange} />
+                    <Button className='auth-button auth-materialComponent' variant = 'contained' color = 'primary' onClick={handleSubmit}>ZALOGUJ SIĘ</Button>
             </form>
         </div>
         )

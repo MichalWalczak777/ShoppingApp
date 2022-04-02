@@ -8,7 +8,6 @@ import Register from './Register';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/reducers';
 import { Redirect } from 'react-router-dom';
-import authStyles from './authStyles';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -28,7 +27,6 @@ function TabPanel(props: TabPanelProps) {
 
 const AuthPanel = () => {
 
-  const {authPanel} = authStyles();
   const isAuthenticated = Boolean(useSelector((state: RootState) => state.auth));
   const [value, setValue] = React.useState(0);
   
@@ -38,19 +36,32 @@ const AuthPanel = () => {
 
   return(
     isAuthenticated ?  <Redirect to={"/accountDetails"}/> : (
-    <div className = {authPanel}>
-      <AppBar elevation = {0} className = 'authPanel-appBar' color='secondary' position="static">
-          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" variant="fullWidth" indicatorColor="secondary">
-              <Tab label="ZALOGUJ SIĘ" />
-              <Tab label="ZAŁÓŻ KONTO" />
-          </Tabs>
-      </AppBar>
-      <TabPanel value={value} index={0}>
-          <Login/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-          <Register/>
-      </TabPanel>
+    <div className='auth'>
+      <div className = 'auth-mobile'>
+        <AppBar elevation = {0} className = 'authPanel-appBar' color='secondary' position="static">
+            <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" variant="fullWidth" indicatorColor="secondary">
+                <Tab label="ZALOGUJ SIĘ" />
+                <Tab label="ZAŁÓŻ KONTO" />
+            </Tabs>
+        </AppBar>
+        <TabPanel value={value} index={0}>
+            <Login/>
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+            <Register/>
+        </TabPanel>
+      </div>
+        <div className='auth-desktop'>
+          <div className='auth-loginPanel'>
+            <h3> Zaloguj się </h3>
+            <Login/>
+          </div>
+          <div className='auth-desktopMiddleSpace'/>
+          <div className='auth-registerPanel'>
+            <h3> Załóż konto </h3>
+            <Register/>
+          </div>
+        </div>
     </div>
     )
   )
