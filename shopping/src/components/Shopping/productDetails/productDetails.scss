@@ -6,20 +6,23 @@
 
 .productDetails-materialComponent{
     &.productDetails-button{
-        height: 56px;
         flex-basis: 50%;
         margin: 0 16px 0 8px;
+        border-radius: 5px;
+        .MuiButton-label{
+            padding-top: 2.5px;
+            padding-bottom: 2.5px;
+        }
     }
     &.productDetails-selectForm{
        width: 100%;
-       margin: 0 8px 0 16px;
+       .MuiInputBase-formControl{
+           height: 41.5px;
+       }
     }
-
-}
-
-
-.productDetails-menuUI {
-    flex-basis: 50%;
+    &.productDetails-selectLabelInside{
+        display: none;
+    }
 }
 
 .productDetails-name{
@@ -54,6 +57,8 @@
     }
     
     .productDetails-menuUI{
+        margin: 0 8px 0 16px;
+        flex-basis: 50%;
         display: flex;
     }
 }
@@ -76,7 +81,7 @@
     }
 }
 
-@media (min-width:992px){
+@media (min-width: 992px){
     .productDetails-mobile{
         display: none;
     }
@@ -94,7 +99,7 @@
     .productDetails-menuWrapper{
         max-width: 30%;
         margin: 40px auto;
-        flex-grow:1;
+        flex-grow: 1;
     }
     .productDetails-menu{
         margin-top: 80px;
@@ -103,6 +108,8 @@
         box-shadow: none;
         .productDetails-menuUI{
             flex-direction: column;
+            margin: 0;
+
         }
         .productDetails-menuInfo{
             margin: 0;
@@ -141,8 +148,12 @@
     .productDetails-materialComponent{
         &.productDetails-button{
             margin: 10px 0;
-            height: 44px;
             width: 100%;
+            border-radius: 5px;
+            .MuiButton-label{
+                padding-top: 2.5px;
+                padding-bottom: 2.5px;
+            }
         }
         &.productDetails-selectForm{
             margin: 10px 0;
@@ -155,9 +166,6 @@
         &.productDetails-additionalIcon{
             width: 21px;
             height: 21px;
-        }
-        &.productDetails-selectLabelInside{
-            display: none;
         }
     }
 
