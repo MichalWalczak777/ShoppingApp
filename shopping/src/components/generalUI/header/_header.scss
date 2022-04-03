@@ -21,23 +21,33 @@
 }
 
 .materialComponent{
-&.header-toolbar{
-    display: "flex";
-    justify-content: space-between;
-}
-    
-&.header-appbar{
-    background-color: #fff;
-}
-
-&.header-icon{
-    color: #000;
+    &.header-toolbar{
+        display: "flex";
+        justify-content: space-between;
+        a:focus {
+            outline: none;
+        }
+    }
+        
+    &.header-appbar{
+        background-color: #fff;
     }
 
-&.header-logoMobile{
-    color: #000;
-        font-family: 'Orbitron';
-}}
+    &.header-icon{
+        color: #000;
+        .MuiTouchRipple-root{
+            display: none;
+        }
+        }
+
+    &.header-logoMobile{
+        color: #000;
+            font-family: 'Orbitron';
+    }
+    .MuiIconButton-root:hover{
+        background-color: #fff;
+    }
+}
 
 .header-navMenu{
     display: none;
