@@ -61,7 +61,7 @@ const BasketElement = ({sizedProduct}: {sizedProduct:SizedProductModel}) => {
                 <div className='basketElement-lowerData'>
                     <p>Rozmiar: {" " + sizedProduct.size}</p>
                     <p>Suma: {(sizedProduct.price * sizedProduct.quantity).toFixed(2) + " PLN"}</p>
-                    <Select className='basketElement-select'
+                    <Select className='basketElement-select basketElement-materialComponent'
                                 variant="outlined"
                                 id="basketElement-selectQuantity"
                                 value={sizedProduct.quantity}
