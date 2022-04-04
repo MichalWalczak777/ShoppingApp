@@ -32,19 +32,19 @@ const App = () => {
   return (
       <div className="app">
         <HashRouter>
-            <Header/>  
-            <Switch>
-              <div className='main-content'>
-                <Container>
-                  <Route exact path="/" component={StartPage}/>
-                  <Route exact path="/products/:category?" component={Products} />
-                  <Route exact path="/basket" component={ShoppingBasket}/>
-                  <Route exact path="/product/:id" component={ProductDetails}/>
-                  <Route exact path="/authPanel" component={AuthPanel}/>
-                  <PrivateRoute exact path="/accountDetails" component={AccountDetails}/>
-                </Container>
-              </div>
-            </Switch>
+            <Header/>
+            <div className='main-content'>  
+              <Switch>
+                  <Container>
+                    <Route exact path="/" component={StartPage}/>
+                    <Route exact path="/products/:category?" component={Products} />
+                    <Route exact path="/basket" component={ShoppingBasket}/>
+                    <Route exact path="/product/:id" component={ProductDetails}/>
+                    <Route exact path="/authPanel" component={AuthPanel}/>
+                    <PrivateRoute exact path="/accountDetails" component={AccountDetails}/>
+                  </Container>
+              </Switch>
+            </div>
             <Footer/>                                                                                                                                                                                                              
         </HashRouter>
       </div>
