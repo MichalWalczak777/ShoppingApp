@@ -1,5 +1,9 @@
 @import "../../../styles/variables";
 
+.startPage{
+    margin-top: 56px;
+}
+
 .startPage-buttonLabel{
     padding-right: 8px;
     font-size: 0.875rem;
@@ -79,7 +83,7 @@
 
 @media (min-width: 992px){
     .startPage{
-        margin-top: 90px;
+        margin-top: 154px;
         h2{
             font-size: 2.75rem;
             letter-spacing: 0.175rem;
