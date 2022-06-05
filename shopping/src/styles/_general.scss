@@ -1,13 +1,14 @@
-html, * {
-    font-family: Roboto;
+html,
+* {
+  font-family: Roboto;
 }
 
-.app{
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.main-content{
-    flex-grow:1;
+.main-content {
+  flex-grow: 1;
 }

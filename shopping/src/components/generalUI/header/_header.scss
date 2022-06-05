@@ -1,113 +1,104 @@
 @import "../../../styles/variables";
 
-.header-appHeader{
-    margin-bottom: $header-height;
+.header-appHeader {
+  margin-bottom: $header-height;
 }
 
-.header-drawerMenuClose{
-    height: $header-height;
+.header-drawerMenuClose {
+  height: $header-height;
 }
 
-.header-drawerMenu{
-    width: 80vw;
+.header-drawerMenu {
+  width: 80vw;
 }
 
-.header-drawerMenuOption{
+.header-drawerMenuOption {
+  background-color: #fff;
+  border: none;
+  font-family: "roboto";
+  font-size: 1.15rem;
+  padding: 10px 20px;
+}
+
+.materialComponent {
+  &.header-toolbar {
+    display: "flex";
+    justify-content: space-between;
+    a:focus {
+      outline: none;
+    }
+  }
+
+  &.header-appbar {
     background-color: #fff;
-    border: none;
-    font-family: "roboto";
-    font-size: 1.15rem;
-    padding: 10px 20px;
+  }
+
+  &.header-icon {
+    color: #000;
+    .MuiTouchRipple-root {
+      display: none;
+    }
+  }
+
+  &.header-logoMobile {
+    color: #000;
+    font-family: "Orbitron";
+  }
+  .MuiIconButton-root:hover {
+    background-color: #fff;
+  }
 }
 
-.materialComponent{
-    &.header-toolbar{
-        display: "flex";
-        justify-content: space-between;
-        a:focus {
-            outline: none;
-        }
-    }
-        
-    &.header-appbar{
-        background-color: #fff;
-    }
-
-    &.header-icon{
-        color: #000;
-        .MuiTouchRipple-root{
-            display: none;
-        }
-        }
-
-    &.header-logoMobile{
-        color: #000;
-            font-family: 'Orbitron';
-    }
-    .MuiIconButton-root:hover{
-        background-color: #fff;
-    }
+.header-navMenu {
+  display: none;
 }
 
-.header-navMenu{
+@media (min-width: 992px) {
+  .header-mobileNavigation,
+  .header-logoMobile {
     display: none;
+  }
+
+  .header-hamburgerMenu {
+    display: none;
+  }
+
+  .header-navMenu {
+    display: block;
+    color: black;
+    width: 100%;
+  }
+
+  .header-navMenuContent {
+    display: flex;
+    justify-content: space-between;
+    .header-categoryButtons {
+      display: flex;
+      justify-content: flex-start;
+    }
+    .header-navButtons {
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+  .header-navMenuLogo {
+    font-size: 1.75rem;
+    justify-content: space-around;
+    display: flex;
+    font-family: "Orbitron";
+    padding: 30px;
+  }
+
+  .header-iconLabel {
+    padding-left: 10px;
+    font-size: 1.25rem;
+  }
+
+  .header-categoryButton {
+    text-transform: uppercase;
+    color: black;
+    line-height: $header-height;
+    padding: 0px 85px 10px 10px;
+    font-size: 1.375rem;
+  }
 }
-
-@media (min-width: 992px){
-    .header-mobileNavigation, .header-logoMobile{
-        display: none;
-    }
-
-    .header-hamburgerMenu{
-        display: none;
-    }
-
-    .header-navMenu{
-        display: block;
-        color:black;
-        width: 100%;
-    }
-
-    .header-navMenuContent{
-        display: flex;
-        justify-content: space-between;
-        .header-categoryButtons{
-            display: flex;
-            justify-content: flex-start;
-        }
-        .header-navButtons{
-            display: flex;
-            justify-content: flex-start;
-        }
-    }
-    .header-navMenuLogo{
-        font-size: 1.75rem;
-        justify-content: space-around;
-        display: flex;
-        font-family: 'Orbitron';
-        padding: 30px; 
-    }
-
-    .header-iconLabel{
-        padding-left: 10px;
-        font-size: 1.25rem;
-    }
-    
-    .header-categoryButton{
-        text-transform: uppercase;
-        color: black;
-        line-height: $header-height;
-        padding: 0px 85px 10px 10px;
-        font-size: 1.375rem;
-    }
-
-    }
-
-   
-
-
-
-
-
-
-

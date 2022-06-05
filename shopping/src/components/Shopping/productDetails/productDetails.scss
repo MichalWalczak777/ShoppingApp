@@ -1,177 +1,172 @@
 @import "../../../styles/variables";
 
-.productDetails-mobile{
-    margin-top: 56px;
+.productDetails-mobile {
+  margin-top: 56px;
 }
 
-.productDetails-materialComponent{
-    &.productDetails-button{
-        flex-basis: 50%;
-        margin: 0 16px 0 8px;
-        border-radius: 5px;
-        .MuiButton-label{
-            padding-top: 2.5px;
-            padding-bottom: 2.5px;
-        }
+.productDetails-materialComponent {
+  &.productDetails-button {
+    flex-basis: 50%;
+    margin: 0 16px 0 8px;
+    border-radius: 5px;
+    .MuiButton-label {
+      padding-top: 2.5px;
+      padding-bottom: 2.5px;
     }
-    &.productDetails-selectForm{
-       width: 100%;
-       .MuiInputBase-formControl{
-           height: 41.5px;
-       }
-    }
-    &.productDetails-selectLabelInside{
-        display: none;
-    }
-}
-
-.productDetails-name{
-    text-transform: capitalize;
-}
-
-.productDetails-mainContentDesktop{
-    max-width: 100vw;
-}
-
-.productDetails-desktop{
-    display: none;
-}
-
-.productDetails-image{
+  }
+  &.productDetails-selectForm {
     width: 100%;
+    .MuiInputBase-formControl {
+      height: 41.5px;
+    }
+  }
+  &.productDetails-selectLabelInside {
+    display: none;
+  }
 }
 
-.productDetails-menu{
-    padding: 10px 0;
-    box-shadow: 0px -2px 4px -5px rgba(0, 0, 0, 0.2), 0px -4px 5px 0px rgba(0, 0, 0, 0.14), 0px -1px 10px 0px rgba(0, 0, 0, 0.12);
-    background: #fff;
-    width: 100%;
-    position: sticky;
-    padding-bottom: 32px;
-    bottom: 0;
-    .productDetails-menuInfo{
-        font-weight: 600;
-        display: flex;
-        justify-content: space-between;
-        margin: 20px;
-    }
-    
-    .productDetails-menuUI{
-        margin: 0 8px 0 16px;
-        flex-basis: 50%;
-        display: flex;
-    }
+.productDetails-name {
+  text-transform: capitalize;
 }
-.productDetails-additionalInfo, .productDetails-selectLabelOutside{
-    display: none;
+
+.productDetails-mainContentDesktop {
+  max-width: 100vw;
 }
-.productDetails-selectWrapper{
+
+.productDetails-desktop {
+  display: none;
+}
+
+.productDetails-image {
+  width: 100%;
+}
+
+.productDetails-menu {
+  padding: 10px 0;
+  box-shadow: 0px -2px 4px -5px rgba(0, 0, 0, 0.2),
+    0px -4px 5px 0px rgba(0, 0, 0, 0.14), 0px -1px 10px 0px rgba(0, 0, 0, 0.12);
+  background: #fff;
+  width: 100%;
+  position: sticky;
+  padding-bottom: 32px;
+  bottom: 0;
+  .productDetails-menuInfo {
+    font-weight: 600;
     display: flex;
+    justify-content: space-between;
+    margin: 20px;
+  }
+
+  .productDetails-menuUI {
+    margin: 0 8px 0 16px;
+    flex-basis: 50%;
+    display: flex;
+  }
+}
+.productDetails-additionalInfo,
+.productDetails-selectLabelOutside {
+  display: none;
+}
+.productDetails-selectWrapper {
+  display: flex;
 }
 
-.productDetails-description{
-    line-height: 1.4rem;
-    font-weight: 300;
-    color: #31353D;
-    margin: 20px 18px 40px 18px;
-    font-size: 0.9rem;
-    h3{
-        font-weight: bold;
-        margin: 15px 0 0 0;
-    }
+.productDetails-description {
+  line-height: 1.4rem;
+  font-weight: 300;
+  color: #31353d;
+  margin: 20px 18px 40px 18px;
+  font-size: 0.9rem;
+  h3 {
+    font-weight: bold;
+    margin: 15px 0 0 0;
+  }
 }
 
-@media (min-width: 992px){
-    .productDetails-mobile{
-        display: none;
+@media (min-width: 992px) {
+  .productDetails-mobile {
+    display: none;
+  }
+  .productDetails-desktop {
+    margin-top: 214px;
+    display: flex;
+  }
+  .productDetails-mainContentDesktop {
+    padding: 0 30px;
+    max-width: 32%;
+  }
+  .productDetails-description {
+    margin: 20px 0 40px 0;
+  }
+  .productDetails-menuWrapper {
+    max-width: 30%;
+    margin: 40px auto;
+    flex-grow: 1;
+  }
+  .productDetails-menu {
+    margin-top: 80px;
+    position: sticky;
+    top: 194px;
+    box-shadow: none;
+    .productDetails-menuUI {
+      flex-direction: column;
+      margin: 0;
     }
-    .productDetails-desktop{
-        margin-top: 214px;
-        display: flex;
+    .productDetails-menuInfo {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
     }
-    .productDetails-mainContentDesktop{
-        padding: 0 30px;
-        max-width: 32%;
-    }
-    .productDetails-description{
-        margin: 20px 0 40px 0;
-    }
-    .productDetails-menuWrapper{
-        max-width: 30%;
-        margin: 40px auto;
-        flex-grow: 1;
-    }
-    .productDetails-menu{
-        margin-top: 80px;
-        position: sticky;
-        top: 194px;
-        box-shadow: none;
-        .productDetails-menuUI{
-            flex-direction: column;
-            margin: 0;
+  }
+  .productDetails-selectWrapper {
+    flex-direction: column;
+  }
 
-        }
-        .productDetails-menuInfo{
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-        }
-    }
-    .productDetails-selectWrapper{
-        flex-direction: column;
-    }
+  .productDetails-additionalInfo {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 0.85rem;
+  }
+  .productDetails-additionalInfoText {
+    padding: 5px 5px;
+  }
 
-    .productDetails-additionalInfo{
-        display: flex;
-        align-items: center;
-        padding: 10px 0;
-        font-size: 0.85rem;
+  .productDetails-name {
+    padding: 10px 0 5px 0;
+    font-weight: normal;
+    font-size: 1.1rem;
+  }
+  .productDetails-price {
+    padding: 10px 0;
+    font-size: 1.4rem;
+  }
+  .productDetails-selectLabelOutside {
+    display: block;
+    padding-top: 20px;
+    font-size: 0.85rem;
+  }
+  .productDetails-materialComponent {
+    &.productDetails-button {
+      margin: 10px 0;
+      width: 100%;
+      border-radius: 5px;
+      .MuiButton-label {
+        padding-top: 2.5px;
+        padding-bottom: 2.5px;
+      }
     }
-    .productDetails-additionalInfoText{
-        padding: 5px 5px;
+    &.productDetails-selectForm {
+      margin: 10px 0;
+      height: 44px;
+      width: 100%;
+      .MuiOutlinedInput-input {
+        padding: 12.5px 24px;
+      }
     }
-
-    .productDetails-name{
-        padding: 10px 0 5px 0;
-        font-weight: normal;
-        font-size:1.1rem;
+    &.productDetails-additionalIcon {
+      width: 21px;
+      height: 21px;
     }
-    .productDetails-price{
-        padding: 10px 0;
-        font-size: 1.4rem;
-    }
-    .productDetails-selectLabelOutside{
-        display:block;
-        padding-top: 20px;
-        font-size: 0.85rem;
-    }
-    .productDetails-materialComponent{
-        &.productDetails-button{
-            margin: 10px 0;
-            width: 100%;
-            border-radius: 5px;
-            .MuiButton-label{
-                padding-top: 2.5px;
-                padding-bottom: 2.5px;
-            }
-        }
-        &.productDetails-selectForm{
-            margin: 10px 0;
-            height: 44px;
-            width: 100%;
-            .MuiOutlinedInput-input{
-                padding: 12.5px 24px ;
-            }
-        }
-        &.productDetails-additionalIcon{
-            width: 21px;
-            height: 21px;
-        }
-    }
-
-
-    
-
-
-
+  }
 }

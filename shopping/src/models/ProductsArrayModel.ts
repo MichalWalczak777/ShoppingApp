@@ -1,5 +1,5 @@
-import {ProductModel} from "./ProductModel";
+import { ProductModel } from "./ProductModel";
 
-export interface ProductsArrayModel{
-    productsArray: Array<ProductModel>
+export interface ProductsArrayModel {
+  productsArray: Array<ProductModel>;
 }

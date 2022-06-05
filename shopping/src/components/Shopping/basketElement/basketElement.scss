@@ -1,67 +1,67 @@
-.basketElement{
-    display: flex;
+.basketElement {
+  display: flex;
 }
 
-.basketElement-imageWrapper{
-    margin: 10px;
-    img{
-        width: 111px;
-        height: 166px;
-    }
+.basketElement-imageWrapper {
+  margin: 10px;
+  img {
+    width: 111px;
+    height: 166px;
+  }
 }
 
-.basketElement-image{
-    width: 100%;
+.basketElement-image {
+  width: 100%;
 }
 
-.basketElement-dataWrapper{
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    font-family: Roboto;
-    margin: 10px;
-    width: 100%;
+.basketElement-dataWrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: Roboto;
+  margin: 10px;
+  width: 100%;
 }
 
-.basketElement-mainInfo{
-    padding-top: 10px;
-    font-size: 0.95rem;
-    padding: 2px 0;
+.basketElement-mainInfo {
+  padding-top: 10px;
+  font-size: 0.95rem;
+  padding: 2px 0;
 }
 
 .basketElement-upperData {
-    display: flex;
-    justify-content: space-between;
-    h3{
-        text-transform: capitalize;
-        padding: 0 0 5px 0;
-    }
+  display: flex;
+  justify-content: space-between;
+  h3 {
+    text-transform: capitalize;
+    padding: 0 0 5px 0;
+  }
 }
 
 .basketElement-lowerData {
-    display: flex;
-    flex-direction: column;
-    p{
-        font-size: 0.9rem;
-        padding: 2px 0;
-    }
-    .basketElement-select{
-        margin: 5px 0 0 0;
-    }
+  display: flex;
+  flex-direction: column;
+  p {
+    font-size: 0.9rem;
+    padding: 2px 0;
+  }
+  .basketElement-select {
+    margin: 5px 0 0 0;
+  }
 }
-.basketElement-materialComponent.basketElement-select{
-    .MuiSelect-select.MuiSelect-root{
-        padding: 10px;
-    }
-}
-
-.basketElement-iconButton.basketElement-materialComponent{
-    padding: 5px 0 0 0;
+.basketElement-materialComponent.basketElement-select {
+  .MuiSelect-select.MuiSelect-root {
+    padding: 10px;
+  }
 }
 
-@media (min-width: 992px){
-    .basketElement-materialComponent.basketElement-select{
-        width: 80px;
-    }
+.basketElement-iconButton.basketElement-materialComponent {
+  padding: 5px 0 0 0;
+}
+
+@media (min-width: 992px) {
+  .basketElement-materialComponent.basketElement-select {
+    width: 80px;
+  }
 }

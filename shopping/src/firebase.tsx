@@ -7,7 +7,7 @@ var firebaseConfig = {
   projectId: "ecommerce-clothes-e0ba2",
   storageBucket: "ecommerce-clothes-e0ba2.appspot.com",
   messagingSenderId: "596515683215",
-  appId: "1:596515683215:web:0e54cefd319a591efa29fa"
+  appId: "1:596515683215:web:0e54cefd319a591efa29fa",
 };
 
 firebase.initializeApp(firebaseConfig);

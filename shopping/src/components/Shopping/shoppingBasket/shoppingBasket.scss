@@ -1,114 +1,116 @@
 @import "../../../styles/variables";
 
-.shoppingBasket-filled, .shoppingBasket-empty{
-    margin: 20px;
-    margin-top: calc(55px + #{$header-height});
+.shoppingBasket-filled,
+.shoppingBasket-empty {
+  margin: 20px;
+  margin-top: calc(55px + #{$header-height});
 }
 
-.shoppingBasket-mainHeader, .shoppingBasket-summaryHeader{
-    margin: 40px 0 0 10px;
-    font-size: 1.4rem;
-    font-weight: 600;
-    text-transform: Capitalize;
-    font-family: Roboto;
+.shoppingBasket-mainHeader,
+.shoppingBasket-summaryHeader {
+  margin: 40px 0 0 10px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-transform: Capitalize;
+  font-family: Roboto;
 }
 
-.shoppingBasket-basketElementsWrapper{
-    padding: 20px 0 10px 0;
+.shoppingBasket-basketElementsWrapper {
+  padding: 20px 0 10px 0;
 }
 
-.shoppingBasket-empty{
+.shoppingBasket-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0 80px 0;
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+.shoppingBasket-contentEmpty {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shoppingBasket-headerEmpty {
+  margin-top: 60px;
+  margin-bottom: 70px;
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.shoppingBasket-basketIcon {
+  padding-right: 12px;
+}
+
+.shoppingBasket-summaryContent {
+  padding: 20px 10px 10px 10px;
+
+  .shoppingBasket-summaryValuesWrapper {
+    padding-bottom: 10px;
+    border-bottom: 1px black solid;
+  }
+  .shoppingBasket-summaryValue {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0 80px 0;
-    p{
-        font-size: 0.9rem;
+    justify-content: space-between;
+    padding: 5px 0;
+    font-size: 0.9rem;
+  }
+  .shoppingBasket-summaryTotal {
+    padding-top: 15px;
+    font-weight: bold;
+  }
+}
+
+.shoppingBasket-button.shoppingBasket-materialComponent {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  border-radius: 5px;
+  width: 100%;
+  .MuiButton-label {
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
+  }
+}
+
+@media (min-width: 992px) {
+  .shoppingBasket-filled {
+    display: flex;
+    justify-content: space-between;
+    margin-top: calc(115px + #{$header-height});
+    margin-bottom: 100px;
+  }
+  .shoppingBasket-empty {
+    .shoppingBasket-materialComponent.shoppingBasket-button {
+      width: 50%;
+      border-radius: 5px;
+      .MuiButton-label {
+        padding-top: 2.5px;
+        padding-bottom: 2.5px;
+      }
     }
-}
-
-.shoppingBasket-contentEmpty{
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.shoppingBasket-headerEmpty{
-    margin-top: 60px;
-    margin-bottom: 70px;
-    font-size: 1.4rem;
+  }
+  .shoppingBasket-contentFilled {
+    flex-basis: 60%;
+  }
+  .shoppingBasket-empty {
     display: flex;
     justify-content: center;
-}
-
-.shoppingBasket-basketIcon{
-    padding-right: 12px;
-}
-
-.shoppingBasket-summaryContent{
-    padding: 20px 10px 10px 10px;
-
-    .shoppingBasket-summaryValuesWrapper{
-        padding-bottom: 10px;
-        border-bottom: 1px black solid;
-    }
-    .shoppingBasket-summaryValue{
-        display: flex;
-        justify-content: space-between;
-        padding: 5px 0;
-        font-size: 0.9rem;
-    }
-    .shoppingBasket-summaryTotal{
-        padding-top: 15px;
-        font-weight: bold;
-    }
-}
-
-.shoppingBasket-button.shoppingBasket-materialComponent{
-        margin-top: 40px;
-        margin-bottom: 40px;
-        border-radius: 5px;
-        width: 100%;
-        .MuiButton-label{
-            padding-top: 2.5px;
-            padding-bottom: 2.5px;
-        }
-}
-
-@media (min-width: 992px){
-    .shoppingBasket-filled{
-        display: flex;
-        justify-content: space-between;
-        margin-top: calc(115px + #{$header-height});
-        margin-bottom: 100px;
-    }
-    .shoppingBasket-empty{
-        .shoppingBasket-materialComponent.shoppingBasket-button{
-            width: 50%;
-            border-radius: 5px;
-            .MuiButton-label{
-                padding-top: 2.5px;
-                padding-bottom: 2.5px;
-            }
-        }
-    }
-    .shoppingBasket-contentFilled{
-        flex-basis: 60%;
-    }
-    .shoppingBasket-empty{
-        display: flex;
-        justify-content: center;
-    }
-    .shoppingBasket-contentEmpty{
-        width: 40%;
-        margin: 100px 0 120px 0;
-    }
-    .shoppingBasket-summary{
-        flex-basis: 30%;
-    }
-    .shoppingBasket-summaryContentWrapper{
-        position: sticky;
-        top: calc(155px + #{$header-height});
-    }
+  }
+  .shoppingBasket-contentEmpty {
+    width: 40%;
+    margin: 100px 0 120px 0;
+  }
+  .shoppingBasket-summary {
+    flex-basis: 30%;
+  }
+  .shoppingBasket-summaryContentWrapper {
+    position: sticky;
+    top: calc(155px + #{$header-height});
+  }
 }

@@ -11,9 +11,14 @@ interface Props extends RouteProps {
 const PrivateRoute: FC<Props> = ({ component: Component, ...rest }) => {
   const authenticated = useSelector((state: RootState) => state.auth);
 
-  return(
-    <Route {...rest} render={props => authenticated ? <Component {...props} /> : <Redirect to="/authPanel" />} />
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        authenticated ? <Component {...props} /> : <Redirect to="/authPanel" />
+      }
+    />
   );
-}
+};
 
 export default PrivateRoute;

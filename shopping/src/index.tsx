@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 import { createStore, compose, $CombinedState } from "redux";
 import rootReducer from "./redux/reducers";
-import { Provider } from 'react-redux';
+import { Provider } from "react-redux";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 declare global {
@@ -14,26 +14,28 @@ declare global {
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, loadFromLocalStorage(), composeEnhancers());
+const store = createStore(
+  rootReducer,
+  loadFromLocalStorage(),
+  composeEnhancers()
+);
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#0d8237"
-               },
+      main: "#0d8237",
+    },
     secondary: {
-      main: "#F0F0F1"
-                }    
-           }
+      main: "#F0F0F1",
+    },
+  },
 });
 
-function saveToLocalStorage(state:any) {
+function saveToLocalStorage(state: any) {
   try {
     const serialisedState = JSON.stringify(state);
     localStorage.setItem("state", serialisedState);
-  } catch {
-    
-  }
+  } catch {}
 }
 
 function loadFromLocalStorage() {
@@ -56,7 +58,7 @@ ReactDOM.render(
       </ThemeProvider>
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
