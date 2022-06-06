@@ -5,17 +5,6 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import * as genderCategories from "../../../categories/clothingGenderCategories";
 
 const StartPage = () => {
-  const useStyles = makeStyles(() => ({
-    button: {
-      border: "1.5px solid white",
-      borderRadius: "5px",
-      color: "white",
-      zIndex: 2,
-    },
-  }));
-
-  const { button } = useStyles();
-
   return (
     <div className="startPage">
       <div className="startPage-imageWrapper startPage-imageWoman">

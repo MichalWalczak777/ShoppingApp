@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { SizedProductModel } from "../../../models/SizedProductModel";
-import BasketElement from "../basketElement/BasketElement";
-import { Button } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/reducers";
 import ShoppingBasketEmpty from "./ShoppingBasketEmpty";

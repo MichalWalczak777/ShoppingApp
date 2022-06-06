@@ -3,11 +3,11 @@ import { SizedProductModel } from "../../../models/SizedProductModel";
 import BasketElement from "../basketElement/BasketElement";
 import { Button } from "@material-ui/core";
 
-interface basketItems {
+interface IProps {
   clothes: Array<SizedProductModel>;
 }
 
-const ShoppingBasketFilled = ({ clothes }: basketItems) => {
+const ShoppingBasketFilled = ({ clothes }: IProps) => {
   const [basketValue, setBasketValue] = useState<number>(0);
   const deliveryCost: number = 9.99;
 
