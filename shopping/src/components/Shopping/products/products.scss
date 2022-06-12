@@ -19,8 +19,20 @@
   padding: 90px 20px 20px;
 }
 
-.products-categorySelect.products-materialComponent {
-  margin: 0 20px;
+.products-materialComponent {
+  &.products-categorySelect {
+    margin: 0 20px;
+  }
+  &.products-hidden {
+    display: none;
+  }
+  &.products-showMoreButton {
+    border: 1.5px solid black;
+    border-radius: 5px;
+    color: black;
+    z-index: 2;
+    align-self: center;
+  }
 }
 
 @media (min-width: 992px) {

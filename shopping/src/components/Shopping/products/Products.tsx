@@ -3,34 +3,15 @@ import { Autocomplete } from "@material-ui/lab";
 import ProductsList from "../productsList/ProductsList";
 import { ProductModel } from "../../../models/ProductModel";
 import ScrollToTop from "../../reusableComponents/ScrollToTop";
-import {
-  Button,
-  TextField,
-  makeStyles,
-  Select,
-  MenuItem,
-} from "@material-ui/core";
+import { Button, TextField, Select, MenuItem } from "@material-ui/core";
 import * as genderCategories from "./../../../categories/clothingGenderCategories";
 import { mockClothingItems as clothingItems } from "../../../productsData";
 import { useParams } from "react-router-dom";
-
-const useStyles = makeStyles(() => ({
-  hidden: {
-    display: "none",
-  },
-  showMoreButton: {
-    border: "1.5px solid black",
-    borderRadius: "5px",
-    color: "black",
-    zIndex: 2,
-    alignSelf: "center",
-  },
-}));
+import { filterAutocompleteOptions, generateOptionCategories } from "./utils";
 
 const Products = () => {
   const productsPerPage: number = 24;
 
-  const { hidden, showMoreButton } = useStyles();
   const focusable = useRef<HTMLInputElement>(null);
   const pathParameters: { category: string } = useParams();
 
@@ -102,15 +83,6 @@ const Products = () => {
     ]);
   };
 
-  const filterAutocompleteOptions = (options: Array<string>, state: string) => {
-    return options.filter((option) => option.includes(state));
-  };
-
-  const generateOptionCategories = () =>
-    clothingItems
-      .map((product) => product.category)
-      .filter((product, pos, self) => self.indexOf(product) === pos);
-
   const handleShowMoreProducts = () => {
     calculateProductsToDisplay();
     setCounter((prev) => prev + 1);
@@ -143,14 +115,17 @@ const Products = () => {
       <Autocomplete
         clearOnEscape
         filterOptions={() =>
-          filterAutocompleteOptions(generateOptionCategories(), searchbarValue)
+          filterAutocompleteOptions(
+            generateOptionCategories(clothingItems),
+            searchbarValue
+          )
         }
         disableClearable
         inputValue={searchbarValue}
         onInputChange={handleSearchbarChange}
         onChange={handleItemCategoryChange}
         onClose={handleClose}
-        options={generateOptionCategories()}
+        options={generateOptionCategories(clothingItems)}
         getOptionLabel={(option) => option}
         renderInput={(params) => (
           <TextField
@@ -178,7 +153,11 @@ const Products = () => {
       <div className="products-container">
         <ProductsList productsArray={productsToDisplay} />
         <Button
-          className={!isShowMoreButtonVisible ? hidden : showMoreButton}
+          className={
+            !isShowMoreButtonVisible
+              ? "products-materialComponent products-hidden"
+              : "products-materialComponent products-showMoreButton"
+          }
           onClick={handleShowMoreProducts}
           variant="outlined"
         >
