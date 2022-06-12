@@ -1,46 +1,44 @@
-# Getting Started with Create React App
+# ShoppingApp
+> Responsive eCommerce website implemented with React, Typescript, Sass, Material UI and Redux, created with Mobile-first approach.
+> Live demo [_here_](https://www.example.com).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## General Information
+- Shopping App is an eCommerce website for buying clothes,
+- project made from scratch, not by following a tutorial,
+- designed by me on different screen versions with Mobile-first approach,
+- I decided to implement an eCommerce project as it is one of the most common types of websites; it also seemed to be a good opportunity to use  Redux state management,
+- I used Material UI to achieve a modern look and better UX standards
 
-## Available Scripts
+## Technologies Used
+- React - version 17.0.
+- Redux - version 4.0.
+- TypeScript - version 4.1.
+- Sass
+- Material UI - version 4.0
 
-In the project directory, you can run:
+## Features
+- Landing page with sections linking to product categories: Woman, Man, Kid
+- List of products page; items displayed with "load more" button, filtered by gender and clothing category (T-shirt, Sweater, etc.)
+- Clothing category search
+- Product details page
+- Login/registration - User authentication with Firebase
+- Adding and removing items from shopping basket - state management with Redux, data saved in local storage
 
-### `npm start`
+## Setup
+Node.js version between 12-15 needs to be installed. Versions can be easily installed and switched using Node Version Manager (NVM). 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Use `npm i` command in terminal to install dependencies. Type `npm start` in it to run the project on [http://localhost:3000](http://localhost:3000).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Project Status
+Project is: _in progress_
 
-### `npm test`
+## Room for Improvement
+- create backend authentication and user data storage (basket state etc.),
+- create backend service for the list of products with filtering,
+- create more advanced search and filtering.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Acknowledgements
+- Pictures uploaded from https://unsplash.com/
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contact
+Created by Michał Walczak - feel free to contact me by email: michalwalczak777@gmail.com
