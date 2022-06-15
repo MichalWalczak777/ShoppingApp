@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/ShoppingApp/static/css/main.10a8feaf.chunk.css",
+    "main.js": "/ShoppingApp/static/js/main.65680b75.chunk.js",
+    "main.js.map": "/ShoppingApp/static/js/main.65680b75.chunk.js.map",
+    "runtime-main.js": "/ShoppingApp/static/js/runtime-main.7f1d4c6d.js",
+    "runtime-main.js.map": "/ShoppingApp/static/js/runtime-main.7f1d4c6d.js.map",
+    "static/js/2.a55f29ac.chunk.js": "/ShoppingApp/static/js/2.a55f29ac.chunk.js",
+    "static/js/2.a55f29ac.chunk.js.map": "/ShoppingApp/static/js/2.a55f29ac.chunk.js.map",
+    "static/js/3.578cfc9e.chunk.js": "/ShoppingApp/static/js/3.578cfc9e.chunk.js",
+    "static/js/3.578cfc9e.chunk.js.map": "/ShoppingApp/static/js/3.578cfc9e.chunk.js.map",
+    "index.html": "/ShoppingApp/index.html",
+    "static/css/main.10a8feaf.chunk.css.map": "/ShoppingApp/static/css/main.10a8feaf.chunk.css.map",
+    "static/js/2.a55f29ac.chunk.js.LICENSE.txt": "/ShoppingApp/static/js/2.a55f29ac.chunk.js.LICENSE.txt",
+    "static/media/main.scss": "/ShoppingApp/static/media/nikhil-uttam-cEPOwfSYm4Q-unsplash.52e361f7.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7f1d4c6d.js",
+    "static/js/2.a55f29ac.chunk.js",
+    "static/css/main.10a8feaf.chunk.css",
+    "static/js/main.65680b75.chunk.js"
+  ]
+}
