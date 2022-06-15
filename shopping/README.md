@@ -1,6 +1,6 @@
 # ShoppingApp
 > Responsive eCommerce website implemented with React, Typescript, Sass, Material UI and Redux, created with Mobile-first approach.
-> Live demo [_here_](https://www.example.com).
+> Live demo [_here_](https://MichalWalczak777.github.io/ShoppingApp/).
 
 ## General Information
 - Shopping App is an eCommerce website for buying clothes,
@@ -28,9 +28,6 @@
 Node.js version between 12-15 needs to be installed. Versions can be easily installed and switched using Node Version Manager (NVM). 
 
 Use `npm i` command in terminal to install dependencies. Type `npm start` in it to run the project on [http://localhost:3000](http://localhost:3000).
-
-## Project Status
-Project is: _in progress_
 
 ## Room for Improvement
 - create backend authentication and user data storage (basket state etc.),
